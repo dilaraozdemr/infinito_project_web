@@ -5,12 +5,9 @@ class SiteLogo extends StatelessWidget {
   final VoidCallback onTap;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 200),
-      child: GestureDetector(
-        onTap: onTap,
-        child: Image.asset("assets/image/logo.png"),
-      ),
+    return GestureDetector(
+      onTap: onTap,
+      child: Image.asset("assets/image/123.png", width: 120, height: 120,),
     );
   }
 }
