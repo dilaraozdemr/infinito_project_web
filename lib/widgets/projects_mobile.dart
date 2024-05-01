@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 
 import '../constant/animated_image.dart';
 import '../constant/colors.dart';
-class ProjectsDesktop extends StatefulWidget {
-  const ProjectsDesktop({Key? key}) : super(key: key);
+
+class ProjectsMobile extends StatefulWidget {
+  const ProjectsMobile({Key? key}) : super(key: key);
 
   @override
-  State<ProjectsDesktop> createState() => _ProjectsDesktopState();
+  State<ProjectsMobile> createState() => _ProjectsMobileState();
 }
 
-class _ProjectsDesktopState extends State<ProjectsDesktop> {
+class _ProjectsMobileState extends State<ProjectsMobile> {
   int hoverIndex = -1;
   @override
   Widget build(BuildContext context) {
@@ -34,12 +35,12 @@ class _ProjectsDesktopState extends State<ProjectsDesktop> {
                   GridView.count(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    crossAxisCount: 4,
-                    crossAxisSpacing: 20,
-                    mainAxisSpacing: 20,
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 15,
+                    mainAxisSpacing: 15,
                     padding: const EdgeInsets.all(10),
                     children:
-                    List.generate(12, (index) {
+                    List.generate(6, (index) {
                       return HoverContainer(
                         onHover: (isHovering) {
                           setState(() {

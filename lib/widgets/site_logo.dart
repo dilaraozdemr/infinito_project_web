@@ -7,7 +7,7 @@ class SiteLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Image.asset("assets/image/123.png", width: 120, height: 120,),
+      child: Image.asset("assets/image/logo.png", width: 120, height: 120,),
     );
   }
 }
