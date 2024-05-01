@@ -16,8 +16,8 @@ class MainMobile extends StatelessWidget {
           ShaderMask(
               shaderCallback: (bounds){
                 return LinearGradient(colors: [
-                  CustomColor.appBarBg.withOpacity(0.6),
-                  CustomColor.appBarBg.withOpacity(0.6),
+                  CustomColor.imageShadow.withOpacity(0.6),
+                  CustomColor.imageShadow.withOpacity(0.6),
                 ]).createShader(bounds);
               },
               blendMode: BlendMode.srcATop,
