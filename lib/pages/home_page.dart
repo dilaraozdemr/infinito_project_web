@@ -80,6 +80,7 @@ class _HomePageState extends State<HomePage> {
                         Container(child: Image.asset("assets/image/home.jpeg")),
                         Container(child: Image.asset("assets/image/home.jpeg")),
                         Container(child: Image.asset("assets/image/home.jpeg")),
+                        Container(child: Image.asset("assets/image/home.jpeg")),
                       ],
                     ),
                   ],
