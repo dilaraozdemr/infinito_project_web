@@ -46,8 +46,9 @@ class FooterDesktop extends StatelessWidget {
                         ],
                       ),
                       const Text("Adres : ", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400, color: CustomColor.bgColor),),
-                      const Text("Yeşil Mahelle Avukat Osman \nSokak No:45 Kat7 Merkez/Zonguldak", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400, color: CustomColor.bgColor),),
-
+                      const Text("Yeşil Mahalle Avukat Osman \nSokak No:45 Kat7 Merkez/Zonguldak", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400, color: CustomColor.bgColor),),
+                      const SizedBox(height: 10),
+                      const Text("Telefon : +90 123 123 1234", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400, color: CustomColor.bgColor),),
                     ],
                   ),
                 ),

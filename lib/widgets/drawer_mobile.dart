@@ -17,7 +17,7 @@ class DrawerMobile extends StatelessWidget {
               padding: const EdgeInsets.only(left: 20.0, top: 20, bottom: 20),
               child: IconButton(onPressed: (){
                 Navigator.of(context).pop();
-              }, icon: const Icon(Icons.close)),
+              }, icon: const Icon(Icons.close, color: CustomColor.appBarBg,)),
             ),
           ),
           drawerBar(0),
@@ -40,9 +40,15 @@ class DrawerMobile extends StatelessWidget {
           fontSize: 16,
         ),
         onTap: (){},
-        leading: Image.asset(navIcons[a]),
-        title: Text(navTitles[a],style: const TextStyle(fontWeight: FontWeight.w400,
-          fontSize: 16,),),
+        leading: Container(
+          width: 5,
+          height: double.infinity,
+          decoration: const BoxDecoration(
+          color: CustomColor.appBarBg,
+          shape: BoxShape.circle,
+        ),),
+        title: Text(navTitles[a],style: const TextStyle(fontWeight: FontWeight.w600,
+          fontSize: 16, color: CustomColor.appBarBg),),
       ),
     );
   }
