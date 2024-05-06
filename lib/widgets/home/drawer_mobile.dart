@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import '../constant/colors.dart';
-import '../constant/nav_items.dart';
+import '../../constant/colors.dart';
+import '../../constant/nav_items.dart';
 class DrawerMobile extends StatelessWidget {
   const DrawerMobile({Key? key}) : super(key: key);
 
@@ -39,7 +40,7 @@ class DrawerMobile extends StatelessWidget {
           fontFamily: "Playfair",
           fontSize: 16,
         ),
-        onTap: (){},
+        onTap: () => Get.toNamed(drawerRoutes[a]),
         leading: Container(
           width: 5,
           height: double.infinity,

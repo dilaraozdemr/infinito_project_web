@@ -1,26 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:infinito_project_web/constant/size.dart';
-import 'package:infinito_project_web/widgets/home/footer_desktop.dart';
-import 'package:infinito_project_web/widgets/home/footer_mobile.dart';
-import 'package:infinito_project_web/widgets/home/main_desktop.dart';
-import 'package:infinito_project_web/widgets/home/who_we_are_desktop.dart';
-import 'package:infinito_project_web/widgets/home/who_we_are_mobile.dart';
+import 'package:infinito_project_web/widgets/projects/projects_home_desktop.dart';
+import 'package:infinito_project_web/widgets/projects/projects_home_mobile.dart';
+
 import '../constant/colors.dart';
+import '../constant/size.dart';
 import '../widgets/home/drawer_mobile.dart';
+import '../widgets/home/footer_desktop.dart';
+import '../widgets/home/footer_mobile.dart';
 import '../widgets/home/header_desktop.dart';
 import '../widgets/home/header_mobile.dart';
-import '../widgets/home/main_mobile.dart';
-import '../widgets/home/projects_desktop.dart';
-import '../widgets/home/projects_mobile.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class ProjectsPage extends StatefulWidget {
+  const ProjectsPage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<ProjectsPage> createState() => _ProjectsPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _ProjectsPageState extends State<ProjectsPage> {
   int hoverIndex = -1;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -47,14 +44,8 @@ class _HomePageState extends State<HomePage> {
                 ),
                 const SizedBox(height: 30,),
                 constraints.maxWidth >= kMinDesktopWidth
-                    ? const MainDesktop()
-                    : const MainMobile(),
-                constraints.maxWidth >= kMinDesktopWidth
-                    ? const WhoWeAreDesktop()
-                    : const WhoWeAreMobile(),
-                constraints.maxWidth >= kMinDesktopWidth
-                    ? const ProjectsDesktop()
-                    : const ProjectsMobile(),
+                    ? const ProjectsHomeDesktop()
+                    : const ProjectsHomeMobile(),
                 constraints.maxWidth >= kMinDesktopWidth
                     ? const FooterDesktop()
                     : const FooterMobile(),
@@ -64,4 +55,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-

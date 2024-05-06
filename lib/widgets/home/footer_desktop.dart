@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:infinito_project_web/widgets/site_logo.dart';
+import 'package:infinito_project_web/widgets/site_light_logo.dart';
 
-import '../constant/colors.dart';
+import '../../constant/colors.dart';
 
 class FooterDesktop extends StatelessWidget {
   const FooterDesktop({Key? key}) : super(key: key);
@@ -20,11 +20,10 @@ class FooterDesktop extends StatelessWidget {
           children: [
             Row(
               children: [
-                Padding(
+                const Padding(
                   padding: const EdgeInsets.all(15.0),
-                  child: SiteLogo(onTap: (){}),
+                  child: SiteLightLogo(),
                 ),
-                const SizedBox(width: 40,),
                 Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: Column(

@@ -13,3 +13,10 @@ List<String> navIcons = [
   "assets/icon/contact-information.png",
   "assets/icon/contact-information.png",
 ];
+List<String> drawerRoutes = [
+  "/home",
+  "/projects",
+  "/home",
+  "/home",
+  "/home",
+];

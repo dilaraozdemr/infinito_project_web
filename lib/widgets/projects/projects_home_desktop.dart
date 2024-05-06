@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../constant/animated_image.dart';
-import '../constant/colors.dart';
-class ProjectsDesktop extends StatefulWidget {
-  const ProjectsDesktop({Key? key}) : super(key: key);
+import '../../constant/animated_image.dart';
+import '../../constant/colors.dart';
+
+class ProjectsHomeDesktop extends StatefulWidget {
+  const ProjectsHomeDesktop({Key? key}) : super(key: key);
 
   @override
-  State<ProjectsDesktop> createState() => _ProjectsDesktopState();
+  State<ProjectsHomeDesktop> createState() => _ProjectsHomeDesktopState();
 }
 
-class _ProjectsDesktopState extends State<ProjectsDesktop> {
+class _ProjectsHomeDesktopState extends State<ProjectsHomeDesktop> {
   int hoverIndex = -1;
   @override
   Widget build(BuildContext context) {
@@ -39,7 +40,7 @@ class _ProjectsDesktopState extends State<ProjectsDesktop> {
                     mainAxisSpacing: 20,
                     padding: const EdgeInsets.all(10),
                     children:
-                    List.generate(12, (index) {
+                    List.generate(24, (index) {
                       return HoverContainer(
                         onHover: (isHovering) {
                           setState(() {

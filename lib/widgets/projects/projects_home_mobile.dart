@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../constant/animated_image.dart';
-import '../constant/colors.dart';
+import '../../constant/animated_image.dart';
+import '../../constant/colors.dart';
 
-class ProjectsMobile extends StatefulWidget {
-  const ProjectsMobile({Key? key}) : super(key: key);
+class ProjectsHomeMobile extends StatefulWidget {
+  const ProjectsHomeMobile({Key? key}) : super(key: key);
 
   @override
-  State<ProjectsMobile> createState() => _ProjectsMobileState();
+  State<ProjectsHomeMobile> createState() => _ProjectsHomeMobileState();
 }
 
-class _ProjectsMobileState extends State<ProjectsMobile> {
+class _ProjectsHomeMobileState extends State<ProjectsHomeMobile> {
   int hoverIndex = -1;
   @override
   Widget build(BuildContext context) {
