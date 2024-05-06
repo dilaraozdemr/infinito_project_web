@@ -18,14 +18,14 @@ class HeaderDesktop extends StatelessWidget {
             Get.toNamed("/projects");
           })),
           Expanded(child: buttonBar(2,(){
-            Get.toNamed("/projects");
+            Get.toNamed("/who");
           })),
           Expanded(child: SiteDarkLogo(onTap: (){})),
           Expanded(child: buttonBar(3,(){
             Get.toNamed("/projects");
           })),
           Expanded(child: buttonBar(4,(){
-            Get.toNamed("/projects");
+            Get.toNamed("/news");
           })),
         ],
       ),

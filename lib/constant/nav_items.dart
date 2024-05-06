@@ -16,7 +16,7 @@ List<String> navIcons = [
 List<String> drawerRoutes = [
   "/home",
   "/projects",
+  "/who",
   "/home",
-  "/home",
-  "/home",
+  "/news",
 ];
