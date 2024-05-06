@@ -34,53 +34,73 @@ class WhoWeAreHomeMobile extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 20,),
-              Center(child: Image.asset("assets/image/home.jpeg", fit: BoxFit.cover,width: 300,)),              ],
-          ),
-          const SizedBox(height: 20,),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text("Misyonumuz",style: TextStyle(
-                  fontSize: 20, fontWeight: FontWeight.w700, color: Colors.black),),
-              const SizedBox(height: 10,),
-              const Row(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Flexible(
-                    child: Column(children: [
-                      Text(
-                        "This text is ssdafsfasfdasfas lksdjflkasdjflk ljsdfkvlgjadfkgjdlk lksdjgklafdjgalkfd ldfkagjdaklfjglakdf lkdfjgkldafjgkldf adlkfgjkaldfgjldfasfsdfasfddsakfjaksdjfksdjfkldso long and long and long and long and long and that's why it is not wrapping to next line.", style: TextStyle(
-                          fontWeight: FontWeight.w500, fontSize: 14, color: Colors.black
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      ClipOval(
+                          child: SizedBox.fromSize(
+                              size: const Size.fromRadius(100),
+                              child: Image.asset("assets/image/who1.jpeg"))),
+                      const SizedBox(width: 20,),
+                      const Text(
+                        "Dilara Özdemir", style: TextStyle(
+                          fontWeight: FontWeight.w400, fontSize: 14, color: Colors.black
+                      ),),
+                      const SizedBox(width: 20,),
+                      const Text(
+                        "İç Mimar", style: TextStyle(
+                          fontWeight: FontWeight.w400, fontSize: 14, color: Colors.black
                       ),)
-                    ]),
-                  )
+                    ],
+                  ),
+                  const SizedBox(width: 20,),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      ClipOval(
+                          child: SizedBox.fromSize(
+                              size: const Size.fromRadius(100),
+                              child: Image.asset("assets/image/who1.jpeg"))),
+                      const SizedBox(width: 20,),
+                      const Text(
+                        "Dilara Özdemir", style: TextStyle(
+                          fontWeight: FontWeight.w400, fontSize: 14, color: Colors.black
+                      ),),
+                      const SizedBox(width: 20,),
+                      const Text(
+                        "Sosyal Medya Sorumlusu", style: TextStyle(
+                          fontWeight: FontWeight.w400, fontSize: 14, color: Colors.black
+                      ),)
+                    ],
+                  ),
                 ],
               ),
-              const SizedBox(height: 20,),
-              Center(child: Image.asset("assets/image/home.jpeg", fit: BoxFit.cover,width: 300,)),],
-          ),
-          const SizedBox(height: 20,),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text("Vizyonumuz",style: TextStyle(
-                  fontSize: 20, fontWeight: FontWeight.w700, color: Colors.black),),
-              const SizedBox(height: 10,),
-              const Row(
-                children: [
-                  Flexible(
-                    child: Column(children: [
-                      Text(
-                        "This text is so long and long and long and long and long  dslfjklsdj klsdafkjklasdjkl jlkjadfklvjkl klah vdklj lıurekjfgh ıukgherqıughqerug chqerluıgqeluı equrgıqer gıequr gıque gkerhand that's why it is not wrapping to next line.", style: TextStyle(
-                          fontWeight: FontWeight.w500, fontSize: 14, color: Colors.black
-                      ),)
-                    ]),
-                  )
-                ],
+              Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    ClipOval(
+                        child: SizedBox.fromSize(
+                            size: const Size.fromRadius(100),
+                            child: Image.asset("assets/image/who1.jpeg"))),
+                    const SizedBox(width: 20,),
+                    const Text(
+                      "Dilara Özdemir", style: TextStyle(
+                        fontWeight: FontWeight.w400, fontSize: 14, color: Colors.black
+                    ),),
+                    const SizedBox(width: 20,),
+                    const Text(
+                      "Yazılım Mühendisi", style: TextStyle(
+                        fontWeight: FontWeight.w400, fontSize: 14, color: Colors.black
+                    ),)
+                  ],
+                ),
               ),
-              const SizedBox(height: 20,),
-              Center(child: Image.asset("assets/image/home.jpeg", fit: BoxFit.cover,width: 300,)),
             ],
-          )
+          ),
         ],
       ),
     );
