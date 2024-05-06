@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:infinito_project_web/constant/colors.dart';
 
 class WhoWeAreHomeDesktop extends StatelessWidget {
   const WhoWeAreHomeDesktop({Key? key}) : super(key: key);
@@ -9,92 +10,88 @@ class WhoWeAreHomeDesktop extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 15.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text("Infinito Project", style: TextStyle(fontSize: 40, fontWeight: FontWeight.w700, color: Colors.black),),
+          const Center(child: Text("Infinito Project", style: TextStyle(fontSize: 40, fontWeight: FontWeight.w700, color: CustomColor.appBarBg),)),
           const SizedBox(height: 60,),
+          const Text("Biz Kimiz?",style: TextStyle(
+              fontSize: 25, fontWeight: FontWeight.w700, color: CustomColor.appBarBg),),
+          const SizedBox(height: 10,),
           const Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Expanded(
-                flex: 2,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Biz Kimiz?",style: TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.w700, color: Colors.black),),
-                    SizedBox(height: 10,),
-                    Row(
-                      children: [
-                        Flexible(
-                          child: Column(children: [
-                            Text(
-                              "This text is so long and long and long adslfhjsdasdfıoghsdıkf akldfgjaklfgjldjgkladf oadfjglısdfjglksdfjg apofgjlşdfjgkladf adlfgjlkadfjglkadfg ladfjglkadjglkadfg oaldjfglkadfgjkfhjksdhfjkdshfjkhsjkfhsdknd long and long and that's why it is not wrapping to next line.", style: TextStyle(
-                                fontWeight: FontWeight.w500, fontSize: 14, color: Colors.black
-                            ),)
-                          ]),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(width: 25,),
-              Expanded(
-                flex: 2,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Misyonumuz",style: TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.w700, color: Colors.black),),
-                    SizedBox(height: 10,),
-                    Row(
-                      children: [
-                        Flexible(
-                          child: Column(children: [
-                            Text(
-                              "This text is ssdafsfasfdasfasfasfsdfasfdweşrıthqeruhfqkeljdhfjqkehfjkldahfkjdshfkjasdhfjkhasdjkf lkdfjkasdfjkdsjfklsajflkasd klsdfjkdsjfklajflkasddsakfjaksdjfksdjfkldso long and long and long and long and long and that's why it is not wrapping to next line.", style: TextStyle(
-                                fontWeight: FontWeight.w500, fontSize: 14, color: Colors.black
-                            ),)
-                          ]),
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(width: 25,),
-              Expanded(
-                flex: 2,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Vizyonumuz",style: TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.w700, color: Colors.black),),
-                    SizedBox(height: 10,),
-                    Row(
-                      children: [
-                        Flexible(
-                          child: Column(children: [
-                            Text(
-                              "This nd long and long and long and thatewrpotjqweıtjıroetqhjkwehjtqlerştlqwşejtrkejtkeqrhtjklqerhtjkhrqejtkqherjkthrejklthqjkelrhtljkqerhtkjqerhtjkerhtjkerhltqerkjhtjlkerhtkeljr's why it is not wrapping to next line.", style: TextStyle(
-                                fontWeight: FontWeight.w500, fontSize: 14, color: Colors.black
-                            ),)
-                          ]),
-                        )
-                      ],
-                    ),
-                  ],
-                ),
+              Flexible(
+                child: Column(children: [
+                  Text(
+                    "This text is so long and long and long adslfhjsdasdfıoghsdıkf akldfgjaklfgjldjgkladf oadfjglısdfjglksdfjg apofgjlşdfjgkladf adlfgjlkadfjglkadfg ladfjglkadjglkadfg oaldjfglkadfgjkfhjksdhfjkdshfjkhsjkfhsdknd long and long and that's why it is not wrapping to next line.", style: TextStyle(
+                      fontWeight: FontWeight.w500, fontSize: 14, color: Colors.black
+                  ),)
+                ]),
               ),
             ],
           ),
           const SizedBox(height: 25,),
-          Row(children: [
-            Expanded(child: Image.asset("assets/image/home.jpeg")),
-            const SizedBox(width: 10,),
-            Expanded(child: Image.asset("assets/image/home.jpeg")),
-            const SizedBox(width: 10,),
-            Expanded(child: Image.asset("assets/image/home.jpeg")),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                ClipOval(
+                    child: SizedBox.fromSize(
+                        size: const Size.fromRadius(100),
+                        child: Image.asset("assets/image/who1.jpeg"))),
+                const SizedBox(width: 20,),
+                const Text(
+                  "Dilara Özdemir", style: TextStyle(
+                    fontWeight: FontWeight.w400, fontSize: 14, color: Colors.black
+                ),),
+                const SizedBox(width: 20,),
+                const Text(
+                  "Yazılım Mühendisi", style: TextStyle(
+                    fontWeight: FontWeight.w400, fontSize: 14, color: Colors.black
+                ),)
+              ],
+            ),
+            const SizedBox(width: 20,),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  ClipOval(
+                      child: SizedBox.fromSize(
+                          size: const Size.fromRadius(100),
+                          child: Image.asset("assets/image/who1.jpeg"))),
+                  const SizedBox(width: 20,),
+                  const Text(
+                    "Dilara Özdemir", style: TextStyle(
+                      fontWeight: FontWeight.w400, fontSize: 14, color: Colors.black
+                  ),),
+                  const SizedBox(width: 20,),
+                  const Text(
+                    "İç Mimar", style: TextStyle(
+                      fontWeight: FontWeight.w400, fontSize: 14, color: Colors.black
+                  ),),
+                ],
+              ),
+              const SizedBox(width: 20,),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  ClipOval(
+                      child: SizedBox.fromSize(
+                          size: const Size.fromRadius(100),
+                          child: Image.asset("assets/image/who1.jpeg"))),
+                  const SizedBox(width: 20,),
+                  const Text(
+                    "Dilara Özdemir", style: TextStyle(
+                      fontWeight: FontWeight.w400, fontSize: 14, color: Colors.black
+                  ),),
+                  const SizedBox(width: 20,),
+                  const Text(
+                    "Sosyal Medya Sorumlusu", style: TextStyle(
+                      fontWeight: FontWeight.w400, fontSize: 14, color: Colors.black
+                  ),)
+                ],
+              ),
           ],)
         ],
       ),

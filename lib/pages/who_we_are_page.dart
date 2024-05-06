@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:infinito_project_web/widgets/home/who_we_are_desktop.dart';
-import 'package:infinito_project_web/widgets/home/who_we_are_mobile.dart';
+import 'package:infinito_project_web/widgets/who_we_are/who_we_are_home_desktop.dart';
+import 'package:infinito_project_web/widgets/who_we_are/who_we_are_home_mobile.dart';
 
 import '../constant/colors.dart';
 import '../constant/size.dart';
@@ -44,8 +44,8 @@ class _WhoWeArePagesState extends State<WhoWeArePages> {
                 ),
                 const SizedBox(height: 30,),
                 constraints.maxWidth >= kMinDesktopWidth
-                    ? const WhoWeAreDesktop()
-                    : const WhoWeAreMobile(),
+                    ? const WhoWeAreHomeDesktop()
+                    : const WhoWeAreHomeMobile(),
                 constraints.maxWidth >= kMinDesktopWidth
                     ? const FooterDesktop()
                     : const FooterMobile(),
