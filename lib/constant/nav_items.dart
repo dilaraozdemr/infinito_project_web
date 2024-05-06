@@ -17,6 +17,6 @@ List<String> drawerRoutes = [
   "/home",
   "/projects",
   "/who",
-  "/home",
+  "/contact",
   "/news",
 ];
