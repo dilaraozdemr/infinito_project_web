@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:infinito_project_web/widgets/contact/contact_desktop.dart';
-import 'package:infinito_project_web/widgets/contact/contact_mobile.dart';
+import 'package:infinito_project_web/widgets/news/news_desktop.dart';
+import 'package:infinito_project_web/widgets/news/news_mobile.dart';
 
 import '../constant/colors.dart';
 import '../constant/size.dart';
@@ -10,14 +10,14 @@ import '../widgets/home/footer_mobile.dart';
 import '../widgets/home/header_desktop.dart';
 import '../widgets/home/header_mobile.dart';
 
-class ContactPage extends StatefulWidget {
-  const ContactPage({Key? key}) : super(key: key);
+class NewsPage extends StatefulWidget {
+  const NewsPage({Key? key}) : super(key: key);
 
   @override
-  State<ContactPage> createState() => _ContactPageState();
+  State<NewsPage> createState() => _NewsPageState();
 }
 
-class _ContactPageState extends State<ContactPage> {
+class _NewsPageState extends State<NewsPage> {
   int hoverIndex = -1;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -44,8 +44,8 @@ class _ContactPageState extends State<ContactPage> {
                 ),
                 const SizedBox(height: 30,),
                 constraints.maxWidth >= kMinDesktopWidth
-                    ? ContactDesktop()
-                    : ContactMobile(),
+                    ? NewsDesktop()
+                    : const NewsMobile(),
                 constraints.maxWidth >= kMinDesktopWidth
                     ? const FooterDesktop()
                     : const FooterMobile(),
@@ -55,4 +55,3 @@ class _ContactPageState extends State<ContactPage> {
     );
   }
 }
-

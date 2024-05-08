@@ -127,12 +127,15 @@ class ContactDesktop extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 20,),
-                    Container(
-                      decoration: BoxDecoration(color: CustomColor.appBarBg, borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 120.0, vertical: 12),
-                        child: Text("Gönder", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16,  color: CustomColor.bgColor),),
+                    GestureDetector(
+                      onTap: (){},
+                      child: Container(
+                        decoration: BoxDecoration(color: CustomColor.appBarBg, borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 120.0, vertical: 12),
+                          child: Text("Gönder", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16,  color: CustomColor.bgColor),),
+                        ),
                       ),
                     )
                   ],
