@@ -44,7 +44,7 @@ class _ContactPageState extends State<ContactPage> {
                 ),
                 const SizedBox(height: 30,),
                 constraints.maxWidth >= kMinDesktopWidth
-                    ? const ContactDesktop()
+                    ? ContactDesktop()
                     : const ContactMobile(),
                 constraints.maxWidth >= kMinDesktopWidth
                     ? const FooterDesktop()
