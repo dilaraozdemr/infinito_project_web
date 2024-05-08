@@ -9,7 +9,7 @@ class HeaderMobile extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Row(
       children: [
-        SiteDarkLogo(onTap: onLogoTap ?? (){}),
+        const SiteDarkLogo(),
         const Spacer(),
         IconButton(onPressed: onMenuTap ?? (){}, icon: Icon(Icons.menu),),
         const SizedBox(width: 30),

@@ -3,6 +3,7 @@
 import 'package:get/get.dart';
 import 'package:infinito_project_web/pages/contact_page.dart';
 import 'package:infinito_project_web/pages/home_page.dart';
+import 'package:infinito_project_web/pages/news_page.dart';
 import 'package:infinito_project_web/pages/projects_page.dart';
 import 'package:infinito_project_web/pages/who_we_are_page.dart';
 
@@ -33,7 +34,7 @@ appRoutes() => [
   ),
   GetPage(
     name: '/news',
-    page: () => const ProjectsPage(),
+    page: () => const NewsPage(),
     middlewares: [RouteMiddleware()],
     transitionDuration: const Duration(milliseconds: 500),
   ),

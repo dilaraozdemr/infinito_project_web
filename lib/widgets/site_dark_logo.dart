@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SiteDarkLogo extends StatelessWidget {
-  const SiteDarkLogo({Key? key, required this.onTap}) : super(key: key);
-  final VoidCallback onTap;
+  const SiteDarkLogo({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

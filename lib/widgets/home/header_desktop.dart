@@ -20,7 +20,7 @@ class HeaderDesktop extends StatelessWidget {
           Expanded(child: buttonBar(2,(){
             Get.toNamed("/who");
           })),
-          Expanded(child: SiteDarkLogo(onTap: (){})),
+          Expanded(child: const SiteDarkLogo()),
           Expanded(child: buttonBar(3,(){
             Get.toNamed("/contact");
           })),

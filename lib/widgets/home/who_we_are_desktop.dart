@@ -9,7 +9,7 @@ class WhoWeAreDesktop extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          const Text("Infinito Project", style: TextStyle(fontSize: 40, fontWeight: FontWeight.w700),),
+          const Text("Infinito Design", style: TextStyle(fontSize: 40, fontWeight: FontWeight.w700),),
           const SizedBox(height: 60,),
           const Row(
             crossAxisAlignment: CrossAxisAlignment.start,
