@@ -1,6 +1,7 @@
 
 
 import 'package:get/get.dart';
+import 'package:infinito_project_web/pages/admin_page.dart';
 import 'package:infinito_project_web/pages/contact_page.dart';
 import 'package:infinito_project_web/pages/home_page.dart';
 import 'package:infinito_project_web/pages/news_page.dart';
@@ -40,7 +41,7 @@ appRoutes() => [
   ),
   GetPage(
     name: '/admin',
-    page: () => const ProjectsPage(),
+    page: () => const AdminPage(),
     middlewares: [RouteMiddleware()],
     transitionDuration: const Duration(milliseconds: 500),
   ),
