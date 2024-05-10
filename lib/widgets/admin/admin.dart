@@ -9,7 +9,7 @@ import 'package:infinito_project_web/widgets/site_dark_logo.dart';
 import '../../constant/size.dart';
 
 class Admin extends StatelessWidget {
-  const Admin({Key? key}) : super(key: key);
+  Admin({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
