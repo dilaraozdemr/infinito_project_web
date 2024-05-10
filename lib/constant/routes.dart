@@ -7,6 +7,10 @@ import 'package:infinito_project_web/pages/home_page.dart';
 import 'package:infinito_project_web/pages/news_page.dart';
 import 'package:infinito_project_web/pages/projects_page.dart';
 import 'package:infinito_project_web/pages/who_we_are_page.dart';
+import 'package:infinito_project_web/widgets/admin/add_project.dart';
+import 'package:infinito_project_web/widgets/admin/contact.dart';
+import 'package:infinito_project_web/widgets/admin/new.dart';
+import 'package:infinito_project_web/widgets/admin/projects.dart';
 
 appRoutes() => [
   GetPage(
@@ -42,6 +46,30 @@ appRoutes() => [
   GetPage(
     name: '/admin',
     page: () => const AdminPage(),
+    middlewares: [RouteMiddleware()],
+    transitionDuration: const Duration(milliseconds: 500),
+  ),
+  GetPage(
+    name: '/admin/projects',
+    page: () => const ProjectsAdminPage(),
+    middlewares: [RouteMiddleware()],
+    transitionDuration: const Duration(milliseconds: 500),
+  ),
+  GetPage(
+    name: '/admin/news',
+    page: () => const NewsAdminPage(),
+    middlewares: [RouteMiddleware()],
+    transitionDuration: const Duration(milliseconds: 500),
+  ),
+  GetPage(
+    name: '/admin/contacts',
+    page: () => const ContactsAdminPage(),
+    middlewares: [RouteMiddleware()],
+    transitionDuration: const Duration(milliseconds: 500),
+  ),
+  GetPage(
+    name: '/admin/add/projects',
+    page: () => AddProjectPage(),
     middlewares: [RouteMiddleware()],
     transitionDuration: const Duration(milliseconds: 500),
   ),
