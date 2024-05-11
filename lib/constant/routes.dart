@@ -9,6 +9,7 @@ import 'package:infinito_project_web/pages/projects_page.dart';
 import 'package:infinito_project_web/pages/who_we_are_page.dart';
 import 'package:infinito_project_web/widgets/admin/add_project.dart';
 import 'package:infinito_project_web/widgets/admin/contact.dart';
+import 'package:infinito_project_web/widgets/admin/edit_new.dart';
 import 'package:infinito_project_web/widgets/admin/edit_project.dart';
 import 'package:infinito_project_web/widgets/admin/new.dart';
 import 'package:infinito_project_web/widgets/admin/projects.dart';
@@ -85,6 +86,12 @@ appRoutes() => [
   GetPage(
     name: '/admin/add/new',
     page: () => AddNewPage(),
+    middlewares: [RouteMiddleware()],
+    transitionDuration: const Duration(milliseconds: 500),
+  ),
+  GetPage(
+    name: '/admin/edit/new/:id',
+    page: () => EditNewPage(),
     middlewares: [RouteMiddleware()],
     transitionDuration: const Duration(milliseconds: 500),
   ),

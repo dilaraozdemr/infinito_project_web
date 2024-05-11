@@ -404,9 +404,9 @@ class _AddProjectPageState extends State<AddNewPage> {
                                 Container(
                                   color: Colors.transparent,
                                   child: imageAvailable
-                                      ? Image.memory(
-                                      adminController.newImage.value)
-                                      : SizedBox(),
+                                      ? adminController.newImage.value.isNotEmpty ?Image.memory(
+                                      adminController.newImage.value): const SizedBox()
+                                      : const SizedBox(),
                                 ),
                                 Positioned(
                                   top: 0,
@@ -414,7 +414,7 @@ class _AddProjectPageState extends State<AddNewPage> {
                                   child: GestureDetector(
                                     onTap: () {
                                       setState(() {
-                                        adminController.newImage.value.removeAt(0);
+                                        adminController.newImage.value = Uint8List(0);
                                       });
                                     },
                                     child: Container(

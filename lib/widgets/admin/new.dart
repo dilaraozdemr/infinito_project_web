@@ -1,8 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../constant/colors.dart';
-class NewsAdminPage extends StatelessWidget {
+import '../../controller/adminController.dart';
+class NewsAdminPage extends StatefulWidget {
   const NewsAdminPage({Key? key}) : super(key: key);
+
+  @override
+  State<NewsAdminPage> createState() => _NewsAdminPageState();
+}
+class _NewsAdminPageState extends State<NewsAdminPage> {
+  AdminController adminController = Get.put(AdminController());
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    adminController.getProjects();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,123 +45,104 @@ class NewsAdminPage extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-
-                  Row(
-                    children: [
-                      GestureDetector(
-                        onTap: (){},
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: CustomColor.appBarBg,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: const Padding(
-                              padding:  EdgeInsets.symmetric(horizontal: 18.0, vertical: 5),
-                              child:  Text("Duyuru Ekle",
-                                style: TextStyle(
-                                    overflow: TextOverflow.ellipsis,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 20,
-                                    color: CustomColor.bgColor),),
-                            ),
-                          ),
-                        ),
-                      ),
-                      const Expanded(
-                        child: Center(
-                          child: Text("Duyurular",
-                            style: TextStyle(
-                                overflow: TextOverflow.ellipsis,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 40,
-                                color: CustomColor.appBarBg),),
-                        ),
-                      ),
-                    ],
+                  const Center(
+                    child: Text("Duyurular",
+                      style: TextStyle(
+                          overflow: TextOverflow.ellipsis,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 40,
+                          color: CustomColor.appBarBg),),
                   ),
-                  ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: 5,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 8.0),
-                          child: ListTile(
-                            title: const Text("Duyuru",
-                                style: TextStyle(
-                                    overflow: TextOverflow.ellipsis,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 24,
-                                    color: CustomColor.appBarBg)),
-                            onTap: () {},
-                            subtitle: const Text("27.03.3003",style: TextStyle(
-                                overflow: TextOverflow.ellipsis,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 12,
-                                color: CustomColor.appBarBg)),
-                            leading: const Text("1 -",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 30,
-                                    color: CustomColor.appBarBg)),
-                            trailing: SizedBox(
-                              width: 140,
-                              height: 60,
-                              child: Row(
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {},
-                                    child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius
-                                              .circular(20),
-                                          color: CustomColor
-                                              .appBarBg,
-                                        ),
-                                        child: const Padding(
-                                          padding: EdgeInsets
-                                              .symmetric(
-                                              horizontal: 20.0,
-                                              vertical: 5),
-                                          child: Center(
-                                              child: Icon(Icons
-                                                  .edit_note_sharp,
-                                                  size: 20,
-                                                  color: CustomColor
-                                                      .bgColor)),
-                                        )),
-                                  ),
-                                  const SizedBox(width: 5),
-                                  GestureDetector(
-                                    onTap: (){},
-                                    child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius
-                                              .circular(20),
-                                          color: CustomColor
-                                              .appBarBg,
-                                        ),
-                                        child: const Padding(
-                                          padding: EdgeInsets
-                                              .symmetric(
-                                              horizontal: 20.0,
-                                              vertical: 5),
-                                          child: Center(
-                                              child: Icon(Icons
-                                                  .delete_outline,
-                                                  size: 20,
-                                                  color: CustomColor
-                                                      .bgColor)),
-                                        )),
-                                  ),
-                                ],
+                  Obx(() {
+                    return ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: adminController.newResponseModel.value
+                            .news?.length ?? 0,
+                        itemBuilder: (context, index) {
+                          var model = adminController.newResponseModel
+                              .value.news?[index];
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 8.0),
+                            child: ListTile(
+                              title: Text(model?.name ?? "",
+                                  style: const TextStyle(
+                                      overflow: TextOverflow.ellipsis,
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 24,
+                                      color: CustomColor.appBarBg)),
+                              onTap: () {},
+                              subtitle: const Text(
+                                  "27.03.3003", style: TextStyle(
+                                  overflow: TextOverflow.ellipsis,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12,
+                                  color: CustomColor.appBarBg)),
+                              leading: Text("${index + 1}",
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 30,
+                                      color: CustomColor.appBarBg)),
+                              trailing: SizedBox(
+                                width: 140,
+                                height: 60,
+                                child: Row(
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {},
+                                      child: Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius
+                                                .circular(20),
+                                            color: CustomColor
+                                                .appBarBg,
+                                          ),
+                                          child: const Padding(
+                                            padding: EdgeInsets
+                                                .symmetric(
+                                                horizontal: 20.0,
+                                                vertical: 5),
+                                            child: Center(
+                                                child: Icon(Icons
+                                                    .edit_note_sharp,
+                                                    size: 20,
+                                                    color: CustomColor
+                                                        .bgColor)),
+                                          )),
+                                    ),
+                                    const SizedBox(width: 5),
+                                    GestureDetector(
+                                      onTap: () {
+                                        adminController.deleteNew(
+                                            model?.sId ?? "");
+                                      },
+                                      child: Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius
+                                                .circular(20),
+                                            color: CustomColor
+                                                .appBarBg,
+                                          ),
+                                          child: const Padding(
+                                            padding: EdgeInsets
+                                                .symmetric(
+                                                horizontal: 20.0,
+                                                vertical: 5),
+                                            child: Center(
+                                                child: Icon(
+                                                    Icons.delete_outline,
+                                                    size: 20,
+                                                    color: CustomColor
+                                                        .bgColor)),
+                                          )),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                        );
-                      }),
+                          );
+                        });
+                  }),
                 ],
               ),
             ),

@@ -23,6 +23,7 @@ class _AdminState extends State<Admin> {
     // TODO: implement initState
     super.initState();
     adminController.getProjects();
+    adminController.getNews();
   }
 
   @override
@@ -113,7 +114,10 @@ class _AdminState extends State<Admin> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: GestureDetector(
-                            onTap: ()=> Get.toNamed('/admin/add/new'),
+                            onTap: ()async{
+                              await Get.toNamed('/admin/add/new');
+                              adminController.getNews();
+                              },
                             child: Container(
                               decoration: BoxDecoration(
                                 border: Border.all(color: CustomColor.appBarBg,
@@ -380,91 +384,104 @@ class _AdminState extends State<Admin> {
                                           fontSize: 40,
                                           color: CustomColor.appBarBg),),
                                   ),
-                                  ListView.builder(
-                                      shrinkWrap: true,
-                                      itemCount: 5,
-                                      itemBuilder: (context, index) {
-                                        return Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 8.0),
-                                          child: ListTile(
-                                            title: const Text("Duyuru",
-                                                style: TextStyle(
-                                                    overflow: TextOverflow
-                                                        .ellipsis,
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 24,
-                                                    color: CustomColor
-                                                        .appBarBg)),
-                                            onTap: () {},
-                                            subtitle: const Text(
-                                                "27.03.3003", style: TextStyle(
-                                                overflow: TextOverflow.ellipsis,
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 12,
-                                                color: CustomColor.appBarBg)),
-                                            leading: const Text("1 -",
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.w600,
-                                                    fontSize: 30,
-                                                    color: CustomColor
-                                                        .appBarBg)),
-                                            trailing: SizedBox(
-                                              width: 140,
-                                              height: 60,
-                                              child: Row(
-                                                children: [
-                                                  GestureDetector(
-                                                    onTap: () {},
-                                                    child: Container(
-                                                        decoration: BoxDecoration(
-                                                          borderRadius: BorderRadius
-                                                              .circular(20),
-                                                          color: CustomColor
-                                                              .appBarBg,
-                                                        ),
-                                                        child: const Padding(
-                                                          padding: EdgeInsets
-                                                              .symmetric(
-                                                              horizontal: 20.0,
-                                                              vertical: 5),
-                                                          child: Center(
-                                                              child: Icon(Icons
-                                                                  .edit_note_sharp,
-                                                                  size: 20,
-                                                                  color: CustomColor
-                                                                      .bgColor)),
-                                                        )),
-                                                  ),
-                                                  const SizedBox(width: 5),
-                                                  GestureDetector(
-                                                    onTap: () {},
-                                                    child: Container(
-                                                        decoration: BoxDecoration(
-                                                          borderRadius: BorderRadius
-                                                              .circular(20),
-                                                          color: CustomColor
-                                                              .appBarBg,
-                                                        ),
-                                                        child: const Padding(
-                                                          padding: EdgeInsets
-                                                              .symmetric(
-                                                              horizontal: 20.0,
-                                                              vertical: 5),
-                                                          child: Center(
-                                                              child: Icon(Icons
-                                                                  .delete_outline,
-                                                                  size: 20,
-                                                                  color: CustomColor
-                                                                      .bgColor)),
-                                                        )),
-                                                  ),
-                                                ],
+                                  Obx(() {
+                                    return adminController.isLoadingNews.value ? CircularProgressIndicator():ListView.builder(
+                                        shrinkWrap: true,
+                                        itemCount: adminController.getNewsItemCount(),
+                                        itemBuilder: (context, index) {
+                                          var model = adminController.newResponseModel.value.news?[index];
+                                          return Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 8.0),
+                                            child: ListTile(
+                                              title: Text(model?.name ?? "",
+                                                  style: const TextStyle(
+                                                      overflow: TextOverflow.ellipsis,
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: 24,
+                                                      color: CustomColor.appBarBg)),
+                                              onTap: () {},
+                                              subtitle: const Text("27.03.3003",
+                                                  style: TextStyle(
+                                                      overflow: TextOverflow
+                                                          .ellipsis,
+                                                      fontWeight: FontWeight
+                                                          .w600,
+                                                      fontSize: 12,
+                                                      color: CustomColor
+                                                          .appBarBg)),
+                                              leading: Text("${index+1} -",
+                                                  style: const TextStyle(
+                                                      fontWeight: FontWeight
+                                                          .w600,
+                                                      fontSize: 30,
+                                                      color: CustomColor
+                                                          .appBarBg)),
+                                              trailing: SizedBox(
+                                                width: 140,
+                                                height: 60,
+                                                child: Row(
+                                                  children: [
+                                                    GestureDetector(
+                                                      onTap: () {
+                                                        var modified = model?.sId?.replaceAll('"', '');
+                                                        String url = "/admin/edit/new/$modified";
+                                                        Get.toNamed(url);
+                                                      },
+                                                      child: Container(
+                                                          decoration: BoxDecoration(
+                                                            borderRadius: BorderRadius
+                                                                .circular(20),
+                                                            color: CustomColor
+                                                                .appBarBg,
+                                                          ),
+                                                          child: const Padding(
+                                                            padding: EdgeInsets
+                                                                .symmetric(
+                                                                horizontal: 20.0,
+                                                                vertical: 5),
+                                                            child: Center(
+                                                                child: Icon(
+                                                                    Icons
+                                                                        .edit_note_sharp,
+                                                                    size: 20,
+                                                                    color: CustomColor
+                                                                        .bgColor)),
+                                                          )),
+                                                    ),
+                                                    const SizedBox(width: 5),
+                                                    GestureDetector(
+                                                      onTap: () {
+                                                        adminController.deleteNew(model?.sId ?? "");
+                                                      },
+                                                      child: Container(
+                                                          decoration: BoxDecoration(
+                                                            borderRadius: BorderRadius
+                                                                .circular(20),
+                                                            color: CustomColor
+                                                                .appBarBg,
+                                                          ),
+                                                          child: const Padding(
+                                                            padding: EdgeInsets
+                                                                .symmetric(
+                                                                horizontal: 20.0,
+                                                                vertical: 5),
+                                                            child: Center(
+                                                                child: Icon(
+                                                                    Icons
+                                                                        .delete_outline,
+                                                                    size: 20,
+                                                                    color: CustomColor
+                                                                        .bgColor)),
+                                                          )),
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        );
-                                      }),
+                                          );
+                                        });
+                                  }),
                                   const SizedBox(height: 40),
                                   GestureDetector(
                                     onTap: () => Get.toNamed("/admin/news"),
