@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:infinito_project_web/controller/adminController/newController.dart';
 
 import '../../constant/colors.dart';
-import '../../controller/adminController.dart';
 class NewsAdminPage extends StatefulWidget {
   const NewsAdminPage({Key? key}) : super(key: key);
 
@@ -10,13 +10,13 @@ class NewsAdminPage extends StatefulWidget {
   State<NewsAdminPage> createState() => _NewsAdminPageState();
 }
 class _NewsAdminPageState extends State<NewsAdminPage> {
-  AdminController adminController = Get.put(AdminController());
+  NewController newController = Get.put(NewController());
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    adminController.getProjects();
+    newController.getNews();
   }
 
   @override
@@ -56,10 +56,10 @@ class _NewsAdminPageState extends State<NewsAdminPage> {
                   Obx(() {
                     return ListView.builder(
                         shrinkWrap: true,
-                        itemCount: adminController.newResponseModel.value
+                        itemCount: newController.newResponseModel.value
                             .news?.length ?? 0,
                         itemBuilder: (context, index) {
-                          var model = adminController.newResponseModel
+                          var model = newController.newResponseModel
                               .value.news?[index];
                           return Padding(
                             padding: const EdgeInsets.symmetric(
@@ -113,7 +113,7 @@ class _NewsAdminPageState extends State<NewsAdminPage> {
                                     const SizedBox(width: 5),
                                     GestureDetector(
                                       onTap: () {
-                                        adminController.deleteNew(
+                                        newController.deleteNew(
                                             model?.sId ?? "");
                                       },
                                       child: Container(

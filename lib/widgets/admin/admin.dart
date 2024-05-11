@@ -4,7 +4,8 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:infinito_project_web/constant/colors.dart';
-import 'package:infinito_project_web/controller/adminController.dart';
+import 'package:infinito_project_web/controller/adminController/newController.dart';
+import 'package:infinito_project_web/controller/adminController/projectController.dart';
 import 'package:infinito_project_web/widgets/site_dark_logo.dart';
 
 import '../../constant/size.dart';
@@ -18,12 +19,13 @@ class Admin extends StatefulWidget {
 
 class _AdminState extends State<Admin> {
   AdminController adminController = Get.put(AdminController());
+  NewController newController = Get.put(NewController());
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     adminController.getProjects();
-    adminController.getNews();
+    newController.getNews();
   }
 
   @override
@@ -116,7 +118,7 @@ class _AdminState extends State<Admin> {
                           child: GestureDetector(
                             onTap: ()async{
                               await Get.toNamed('/admin/add/new');
-                              adminController.getNews();
+                              newController.getNews();
                               },
                             child: Container(
                               decoration: BoxDecoration(
@@ -385,11 +387,11 @@ class _AdminState extends State<Admin> {
                                           color: CustomColor.appBarBg),),
                                   ),
                                   Obx(() {
-                                    return adminController.isLoadingNews.value ? CircularProgressIndicator():ListView.builder(
+                                    return newController.isLoadingNews.value ? CircularProgressIndicator():ListView.builder(
                                         shrinkWrap: true,
-                                        itemCount: adminController.getNewsItemCount(),
+                                        itemCount: newController.getNewsItemCount(),
                                         itemBuilder: (context, index) {
-                                          var model = adminController.newResponseModel.value.news?[index];
+                                          var model = newController.newResponseModel.value.news?[index];
                                           return Padding(
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 8.0),
@@ -452,7 +454,7 @@ class _AdminState extends State<Admin> {
                                                     const SizedBox(width: 5),
                                                     GestureDetector(
                                                       onTap: () {
-                                                        adminController.deleteNew(model?.sId ?? "");
+                                                        newController.deleteNew(model?.sId ?? "");
                                                       },
                                                       child: Container(
                                                           decoration: BoxDecoration(

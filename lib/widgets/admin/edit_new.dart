@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:image_picker_web/image_picker_web.dart';
+import 'package:infinito_project_web/controller/adminController/newController.dart';
 
 import '../../constant/colors.dart';
-import '../../controller/adminController.dart';
 
 class EditNewPage extends StatefulWidget {
   EditNewPage({Key? key}) : super(key: key);
@@ -17,7 +17,7 @@ class EditNewPage extends StatefulWidget {
 }
 
 class _EditNewPageState extends State<EditNewPage> {
-  final AdminController adminController = Get.put(AdminController());
+  final NewController newController = Get.put(NewController());
 
   bool imageAvailable = false;
 
@@ -27,7 +27,7 @@ class _EditNewPageState extends State<EditNewPage> {
     super.initState();
     var data = Get.parameters;
     String id = data['id'] ?? "";
-    adminController.getNew(id);
+    newController.getNew(id);
   }
 
   @override
@@ -35,7 +35,7 @@ class _EditNewPageState extends State<EditNewPage> {
     return LayoutBuilder(builder: (context, constraints) {
       return Obx(() {
         return Scaffold(
-            body: adminController.isLoadingForSingleNew.value
+            body: newController.isLoadingForSingleNew.value
                 ? const Center(child: CircularProgressIndicator())
                 : SingleChildScrollView(
               child: Obx(() {
@@ -120,14 +120,14 @@ class _EditNewPageState extends State<EditNewPage> {
                                               width: 300,
                                               child: TextFormField(
                                                 onChanged: (String value) {
-                                                  adminController
+                                                  newController
                                                       .newTitleForEdit
                                                       .value =
-                                                      adminController
+                                                      newController
                                                           .new_name_edit
                                                           .text;
                                                 },
-                                                controller: adminController.new_name_edit,
+                                                controller: newController.new_name_edit,
                                                 decoration: InputDecoration(
                                                   focusedBorder:
                                                   OutlineInputBorder(
@@ -163,13 +163,13 @@ class _EditNewPageState extends State<EditNewPage> {
                                                     .withOpacity(0.2),
                                               ),
                                               child: TextField(
-                                                controller: adminController
+                                                controller: newController
                                                     .new_description_edit,
                                                 onChanged: (String value) {
-                                                  adminController
+                                                  newController
                                                       .newDescriptionForEdit
                                                       .value =
-                                                      adminController.new_description_edit.text;
+                                                      newController.new_description_edit.text;
                                                 },
                                                 style: const TextStyle(
                                                     fontWeight: FontWeight.w500,
@@ -206,7 +206,7 @@ class _EditNewPageState extends State<EditNewPage> {
                                                 Uint8List? bytesFromPicker = await ImagePickerWeb
                                                     .getImageAsBytes();
                                                 setState(() {
-                                                  adminController.imageFilesEditNew.value = bytesFromPicker ?? Uint8List(0);
+                                                  newController.imageFilesEditNew.value = bytesFromPicker ?? Uint8List(0);
                                                   imageAvailable = true;
                                                 });
                                               },
@@ -237,10 +237,10 @@ class _EditNewPageState extends State<EditNewPage> {
                                             const SizedBox(height: 20),
                                             Obx(() {
                                               return GestureDetector(
-                                                onTap: adminController
+                                                onTap: newController
                                                     .isLoadingForEditNew
                                                     .value ? null : () async {
-                                                  await adminController.updateNew(adminController.selectedNew.value.sId ?? "");
+                                                  await newController.updateNew(newController.selectedNew.value.sId ?? "");
                                                   Get.back();
                                                 },
                                                 child: Container(
@@ -254,7 +254,7 @@ class _EditNewPageState extends State<EditNewPage> {
                                                         .symmetric(
                                                         horizontal: 30.0,
                                                         vertical: 10),
-                                                    child: adminController
+                                                    child: newController
                                                         .isLoadingForEditNew.value
                                                         ? const CircularProgressIndicator()
                                                         : const Text(
@@ -291,12 +291,12 @@ class _EditNewPageState extends State<EditNewPage> {
                                     width: 300,
                                     child: TextFormField(
                                       onChanged: (String value) {
-                                        adminController.newTitleForEdit
+                                        newController.newTitleForEdit
                                             .value =
-                                            adminController.new_name_edit
+                                            newController.new_name_edit
                                                 .text;
                                       },
-                                      controller: adminController
+                                      controller: newController
                                           .new_name_edit,
                                       decoration: InputDecoration(
                                         focusedBorder: OutlineInputBorder(
@@ -328,12 +328,12 @@ class _EditNewPageState extends State<EditNewPage> {
                                     ),
                                     child: TextField(
                                       onChanged: (String value) {
-                                        adminController
+                                        newController
                                             .newDescriptionForEdit.value =
-                                            adminController
+                                            newController
                                                 .new_description_edit.text;
                                       },
-                                      controller: adminController
+                                      controller: newController
                                           .new_description_edit,
                                       style: const TextStyle(
                                           fontWeight: FontWeight.w500,
@@ -365,7 +365,7 @@ class _EditNewPageState extends State<EditNewPage> {
                                     onTap: () async {
                                       Uint8List? bytesFromPicker = await ImagePickerWeb.getImageAsBytes();
                                       setState(() {
-                                        adminController.imageFilesEditNew.value = bytesFromPicker ?? Uint8List(0);
+                                        newController.imageFilesEditNew.value = bytesFromPicker ?? Uint8List(0);
                                         imageAvailable = true;
                                       });
                                     },
@@ -391,8 +391,8 @@ class _EditNewPageState extends State<EditNewPage> {
                                   const SizedBox(width: 20),
                                   GestureDetector(
                                     onTap: () {
-                                      adminController.updateNew(
-                                          adminController.selectedNew.value
+                                      newController.updateNew(
+                                          newController.selectedNew.value
                                               .sId ?? "");
                                     },
                                     child: Container(
@@ -423,7 +423,7 @@ class _EditNewPageState extends State<EditNewPage> {
                               ),
                               Row(
                                 children: [
-                                  adminController.imageFilesEditNew.value.isEmpty && adminController.selectedNew.value.image != ""?
+                                  newController.imageFilesEditNew.value.isEmpty && newController.selectedNew.value.image != ""?
                                   Container(
                                     decoration: const BoxDecoration(
                                       color: Colors.transparent,
@@ -434,7 +434,7 @@ class _EditNewPageState extends State<EditNewPage> {
                                             color: Colors.transparent,
                                             child:
                                             Image.network(
-                                              adminController.selectedNew.value.image ?? "",
+                                              newController.selectedNew.value.image ?? "",
                                             )
 
                                         ),
@@ -444,7 +444,7 @@ class _EditNewPageState extends State<EditNewPage> {
                                           child: GestureDetector(
                                             onTap: () {
                                               setState(() {
-                                                adminController.selectedNew.value.image = "";
+                                                newController.selectedNew.value.image = "";
                                               });
                                             },
                                             child: Container(
@@ -468,7 +468,7 @@ class _EditNewPageState extends State<EditNewPage> {
                                     ),
                                   ):SizedBox(),
                                   const SizedBox(width: 10),
-                                  adminController.imageFilesEditNew.value.isNotEmpty ?
+                                  newController.imageFilesEditNew.value.isNotEmpty ?
                                   Container(
                                     decoration: const BoxDecoration(
                                       color: Colors.transparent,
@@ -478,8 +478,8 @@ class _EditNewPageState extends State<EditNewPage> {
                                         Container(
                                           color: Colors.transparent,
                                           child: imageAvailable
-                                              ? adminController.imageFilesEditNew.value.isNotEmpty ?Image.memory(
-                                              adminController.imageFilesEditNew.value): const SizedBox()
+                                              ? newController.imageFilesEditNew.value.isNotEmpty ?Image.memory(
+                                              newController.imageFilesEditNew.value): const SizedBox()
                                               : const SizedBox(),
                                         ),
                                         Positioned(
@@ -488,7 +488,7 @@ class _EditNewPageState extends State<EditNewPage> {
                                           child: GestureDetector(
                                             onTap: () {
                                               setState(() {
-                                                adminController.imageFilesEditNew.value = Uint8List(0);
+                                                newController.imageFilesEditNew.value = Uint8List(0);
                                               });
                                             },
                                             child: Container(

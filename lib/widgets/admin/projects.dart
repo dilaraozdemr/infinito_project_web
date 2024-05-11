@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:infinito_project_web/controller/adminController.dart';
+import 'package:infinito_project_web/controller/adminController/projectController.dart';
 
 import '../../constant/colors.dart';
 

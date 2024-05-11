@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:image_picker_web/image_picker_web.dart';
+import 'package:infinito_project_web/controller/adminController/newController.dart';
 
 import '../../constant/colors.dart';
-import '../../controller/adminController.dart';
 
 class AddNewPage extends StatefulWidget {
   AddNewPage({Key? key}) : super(key: key);
@@ -17,7 +17,7 @@ class AddNewPage extends StatefulWidget {
 }
 
 class _AddProjectPageState extends State<AddNewPage> {
-  final AdminController adminController = Get.put(AdminController());
+  final NewController newController = Get.put(NewController());
   TextEditingController new_name = TextEditingController();
   TextEditingController new_description = TextEditingController();
   bool imageAvailable = false;
@@ -104,7 +104,7 @@ class _AddProjectPageState extends State<AddNewPage> {
                                           width: 300,
                                           child: TextFormField(
                                             onChanged: (String value) {
-                                              adminController.newTitle
+                                              newController.newTitle
                                                   .value = new_name.text;
                                             },
                                             controller: new_name,
@@ -145,7 +145,7 @@ class _AddProjectPageState extends State<AddNewPage> {
                                           child: TextField(
                                             controller: new_description,
                                             onChanged: (String value) {
-                                              adminController.newDescription
+                                              newController.newDescription
                                                   .value =
                                                   new_description.text;
                                             },
@@ -183,7 +183,7 @@ class _AddProjectPageState extends State<AddNewPage> {
                                             Uint8List? bytesFromPicker = await ImagePickerWeb
                                                 .getImageAsBytes();
                                             setState(() {
-                                              adminController.newImage.value =
+                                              newController.newImage.value =
                                                   bytesFromPicker ??
                                                       Uint8List(0);
                                               imageAvailable = true;
@@ -216,9 +216,9 @@ class _AddProjectPageState extends State<AddNewPage> {
                                         const SizedBox(height: 20),
                                         Obx(() {
                                           return GestureDetector(
-                                            onTap: adminController.isNewLoading
+                                            onTap: newController.isNewLoading
                                                 .value ? null : () async {
-                                              await adminController.sendNew();
+                                              await newController.sendNew();
                                               Get.back();
                                             },
                                             child: Container(
@@ -232,7 +232,7 @@ class _AddProjectPageState extends State<AddNewPage> {
                                                     .symmetric(
                                                     horizontal: 30.0,
                                                     vertical: 10),
-                                                child: adminController.isLoading
+                                                child: newController.isNewLoading
                                                     .value
                                                     ? const CircularProgressIndicator()
                                                     : const Text(
@@ -269,7 +269,7 @@ class _AddProjectPageState extends State<AddNewPage> {
                                 width: 300,
                                 child: TextFormField(
                                   onChanged: (String value) {
-                                    adminController.newTitle.value =
+                                    newController.newTitle.value =
                                         new_name.text;
                                   },
                                   controller: new_name,
@@ -303,7 +303,7 @@ class _AddProjectPageState extends State<AddNewPage> {
                                 ),
                                 child: TextField(
                                   onChanged: (String value) {
-                                    adminController.newDescription.value =
+                                    newController.newDescription.value =
                                         new_description.text;
                                   },
                                   controller: new_description,
@@ -338,7 +338,7 @@ class _AddProjectPageState extends State<AddNewPage> {
                                   Uint8List? bytesFromPicker = await ImagePickerWeb
                                       .getImageAsBytes();
                                   setState(() {
-                                    adminController.newImage.value =
+                                    newController.newImage.value =
                                         bytesFromPicker ?? Uint8List(0);
                                     imageAvailable = true;
                                   });
@@ -364,9 +364,9 @@ class _AddProjectPageState extends State<AddNewPage> {
                               ),
                               const SizedBox(width: 20),
                               GestureDetector(
-                                onTap: adminController.isNewLoading
+                                onTap: newController.isNewLoading
                                     .value ? null : () async {
-                                  await adminController.sendNew();
+                                  await newController.sendNew();
                                   Get.back();
                                 },
                                 child: Container(
@@ -404,8 +404,8 @@ class _AddProjectPageState extends State<AddNewPage> {
                                 Container(
                                   color: Colors.transparent,
                                   child: imageAvailable
-                                      ? adminController.newImage.value.isNotEmpty ?Image.memory(
-                                      adminController.newImage.value): const SizedBox()
+                                      ? newController.newImage.value.isNotEmpty ?Image.memory(
+                                      newController.newImage.value): const SizedBox()
                                       : const SizedBox(),
                                 ),
                                 Positioned(
@@ -414,7 +414,7 @@ class _AddProjectPageState extends State<AddNewPage> {
                                   child: GestureDetector(
                                     onTap: () {
                                       setState(() {
-                                        adminController.newImage.value = Uint8List(0);
+                                        newController.newImage.value = Uint8List(0);
                                       });
                                     },
                                     child: Container(

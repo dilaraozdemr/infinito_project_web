@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:image_picker_web/image_picker_web.dart';
 
 import '../../constant/colors.dart';
-import '../../controller/adminController.dart';
+import '../../controller/adminController/projectController.dart';
 
 class EditProjectPage extends StatefulWidget {
   EditProjectPage({Key? key}) : super(key: key);
