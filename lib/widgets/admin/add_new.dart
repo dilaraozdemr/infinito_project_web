@@ -9,17 +9,17 @@ import 'package:image_picker_web/image_picker_web.dart';
 import '../../constant/colors.dart';
 import '../../controller/adminController.dart';
 
-class AddProjectPage extends StatefulWidget {
-  AddProjectPage({Key? key}) : super(key: key);
+class AddNewPage extends StatefulWidget {
+  AddNewPage({Key? key}) : super(key: key);
 
   @override
-  State<AddProjectPage> createState() => _AddProjectPageState();
+  State<AddNewPage> createState() => _AddProjectPageState();
 }
 
-class _AddProjectPageState extends State<AddProjectPage> {
+class _AddProjectPageState extends State<AddNewPage> {
   final AdminController adminController = Get.put(AdminController());
-  TextEditingController project_name = TextEditingController();
-  TextEditingController project_description = TextEditingController();
+  TextEditingController new_name = TextEditingController();
+  TextEditingController new_description = TextEditingController();
   bool imageAvailable = false;
 
   @override
@@ -52,7 +52,7 @@ class _AddProjectPageState extends State<AddProjectPage> {
                         children: [
                           const Center(
                             child: Text(
-                              "Proje Ekle",
+                              "Duyuru Ekle",
                               style: TextStyle(
                                   overflow: TextOverflow.ellipsis,
                                   fontWeight: FontWeight.w600,
@@ -104,10 +104,10 @@ class _AddProjectPageState extends State<AddProjectPage> {
                                           width: 300,
                                           child: TextFormField(
                                             onChanged: (String value) {
-                                              adminController.projectTitle
-                                                  .value = project_name.text;
+                                              adminController.newTitle
+                                                  .value = new_name.text;
                                             },
-                                            controller: project_name,
+                                            controller: new_name,
                                             decoration: InputDecoration(
                                               focusedBorder:
                                               OutlineInputBorder(
@@ -143,11 +143,11 @@ class _AddProjectPageState extends State<AddProjectPage> {
                                                 .withOpacity(0.2),
                                           ),
                                           child: TextField(
-                                            controller: project_description,
+                                            controller: new_description,
                                             onChanged: (String value) {
-                                              adminController.projectDescription
+                                              adminController.newDescription
                                                   .value =
-                                                  project_description.text;
+                                                  new_description.text;
                                             },
                                             style: const TextStyle(
                                                 fontWeight: FontWeight.w500,
@@ -180,15 +180,12 @@ class _AddProjectPageState extends State<AddProjectPage> {
                                       children: [
                                         GestureDetector(
                                           onTap: () async {
-                                            List<Uint8List>? bytesFromPicker =
-                                            await ImagePickerWeb
-                                                .getMultiImagesAsBytes();
+                                            Uint8List? bytesFromPicker = await ImagePickerWeb
+                                                .getImageAsBytes();
                                             setState(() {
-                                              bytesFromPicker
-                                                  ?.forEach((element) {
-                                                adminController.imageFiles
-                                                    .add(element);
-                                              });
+                                              adminController.newImage.value =
+                                                  bytesFromPicker ??
+                                                      Uint8List(0);
                                               imageAvailable = true;
                                             });
                                           },
@@ -219,8 +216,9 @@ class _AddProjectPageState extends State<AddProjectPage> {
                                         const SizedBox(height: 20),
                                         Obx(() {
                                           return GestureDetector(
-                                            onTap: adminController.isLoading.value ? null:() async {
-                                              await adminController.sendProject();
+                                            onTap: adminController.isNewLoading
+                                                .value ? null : () async {
+                                              await adminController.sendNew();
                                               Get.back();
                                             },
                                             child: Container(
@@ -230,11 +228,15 @@ class _AddProjectPageState extends State<AddProjectPage> {
                                                 BorderRadius.circular(20),
                                               ),
                                               child: Padding(
-                                                padding: const EdgeInsets.symmetric(
+                                                padding: const EdgeInsets
+                                                    .symmetric(
                                                     horizontal: 30.0,
                                                     vertical: 10),
-                                                child: adminController.isLoading.value ? const CircularProgressIndicator():const Text(
-                                                  "Proje Yükle",
+                                                child: adminController.isLoading
+                                                    .value
+                                                    ? const CircularProgressIndicator()
+                                                    : const Text(
+                                                  "Duyuru Yükle",
                                                   style: TextStyle(
                                                       overflow:
                                                       TextOverflow.ellipsis,
@@ -267,10 +269,10 @@ class _AddProjectPageState extends State<AddProjectPage> {
                                 width: 300,
                                 child: TextFormField(
                                   onChanged: (String value) {
-                                    adminController.projectTitle.value =
-                                        project_name.text;
+                                    adminController.newTitle.value =
+                                        new_name.text;
                                   },
-                                  controller: project_name,
+                                  controller: new_name,
                                   decoration: InputDecoration(
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: const BorderSide(
@@ -301,10 +303,10 @@ class _AddProjectPageState extends State<AddProjectPage> {
                                 ),
                                 child: TextField(
                                   onChanged: (String value) {
-                                    adminController.projectTitle.value =
-                                        project_description.text;
+                                    adminController.newDescription.value =
+                                        new_description.text;
                                   },
-                                  controller: project_description,
+                                  controller: new_description,
                                   style: const TextStyle(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 16,
@@ -333,13 +335,11 @@ class _AddProjectPageState extends State<AddProjectPage> {
                             children: [
                               GestureDetector(
                                 onTap: () async {
-                                  List<Uint8List>? bytesFromPicker =
-                                  await ImagePickerWeb
-                                      .getMultiImagesAsBytes();
+                                  Uint8List? bytesFromPicker = await ImagePickerWeb
+                                      .getImageAsBytes();
                                   setState(() {
-                                    bytesFromPicker?.forEach((element) {
-                                      adminController.imageFiles.add(element);
-                                    });
+                                    adminController.newImage.value =
+                                        bytesFromPicker ?? Uint8List(0);
                                     imageAvailable = true;
                                   });
                                 },
@@ -364,8 +364,9 @@ class _AddProjectPageState extends State<AddProjectPage> {
                               ),
                               const SizedBox(width: 20),
                               GestureDetector(
-                                onTap: adminController.isLoading.value ? null:() async {
-                                  await adminController.sendProject();
+                                onTap: adminController.isNewLoading
+                                    .value ? null : () async {
+                                  await adminController.sendNew();
                                   Get.back();
                                 },
                                 child: Container(
@@ -379,7 +380,7 @@ class _AddProjectPageState extends State<AddProjectPage> {
                                         horizontal: 30.0,
                                         vertical: 10),
                                     child: Text(
-                                      "Proje Yükle",
+                                      "Duyuru Yükle",
                                       style: TextStyle(
                                           overflow:
                                           TextOverflow.ellipsis,
@@ -394,54 +395,47 @@ class _AddProjectPageState extends State<AddProjectPage> {
                               ),
                             ],
                           ),
-                          GridView.count(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            crossAxisCount: 4,
-                            crossAxisSpacing: 20,
-                            mainAxisSpacing: 20,
-                            padding: const EdgeInsets.all(10),
-                            children: List.generate(
-                                adminController.imageFiles.length, (index) {
-                              return Stack(
-                                children: [
-                                  Container(
-                                    color: Colors.transparent,
-                                    child: imageAvailable
-                                        ? Image.memory(
-                                        adminController.imageFiles[index])
-                                        : SizedBox(),
-                                  ),
-                                  Positioned(
-                                    top: 0,
-                                    right: 0,
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          adminController.imageFiles
-                                              .removeAt(index);
-                                        });
-                                      },
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(
-                                              10),
-                                          color: CustomColor.appBarBg,
-                                        ),
-                                        child: const Padding(
-                                          padding: EdgeInsets.all(10.0),
-                                          child: Icon(
-                                            Icons.close_rounded,
-                                            color: CustomColor.bgColor,
-                                          ),
+                          Container(
+                            decoration: const BoxDecoration(
+                              color: Colors.transparent,
+                            ),
+                            child: Stack(
+                              children: [
+                                Container(
+                                  color: Colors.transparent,
+                                  child: imageAvailable
+                                      ? Image.memory(
+                                      adminController.newImage.value)
+                                      : SizedBox(),
+                                ),
+                                Positioned(
+                                  top: 0,
+                                  right: 0,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        adminController.newImage.value.removeAt(0);
+                                      });
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(
+                                            10),
+                                        color: CustomColor.appBarBg,
+                                      ),
+                                      child: const Padding(
+                                        padding: EdgeInsets.all(10.0),
+                                        child: Icon(
+                                          Icons.close_rounded,
+                                          color: CustomColor.bgColor,
                                         ),
                                       ),
                                     ),
                                   ),
-                                ],
-                              );
-                            }),
-                          ),
+                                ),
+                              ],
+                            ),
+                          )
                         ],
                       ),
                     ),

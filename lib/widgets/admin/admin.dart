@@ -112,31 +112,34 @@ class _AdminState extends State<Admin> {
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(color: CustomColor.appBarBg,
-                                  width: 2),
-                              borderRadius: BorderRadius.circular(20),
-                              color: CustomColor.appBarBg,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  spreadRadius: 5,
-                                  blurRadius: 7,
-                                  offset: const Offset(
-                                      0, 3), // changes position of shadow
+                          child: GestureDetector(
+                            onTap: ()=> Get.toNamed('/admin/add/new'),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(color: CustomColor.appBarBg,
+                                    width: 2),
+                                borderRadius: BorderRadius.circular(20),
+                                color: CustomColor.appBarBg,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 5,
+                                    blurRadius: 7,
+                                    offset: const Offset(
+                                        0, 3), // changes position of shadow
+                                  ),
+                                ],
+                              ),
+                              child: const Padding(
+                                padding: EdgeInsets.symmetric(vertical: 10.0),
+                                child: Center(
+                                  child: Text("Duyuru Ekle",
+                                    style: TextStyle(
+                                        overflow: TextOverflow.ellipsis,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 35,
+                                        color: CustomColor.bgColor),),
                                 ),
-                              ],
-                            ),
-                            child: const Padding(
-                              padding: EdgeInsets.symmetric(vertical: 10.0),
-                              child: Center(
-                                child: Text("Duyuru Ekle",
-                                  style: TextStyle(
-                                      overflow: TextOverflow.ellipsis,
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 35,
-                                      color: CustomColor.bgColor),),
                               ),
                             ),
                           ),

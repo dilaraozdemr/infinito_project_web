@@ -13,6 +13,8 @@ import 'package:infinito_project_web/widgets/admin/edit_project.dart';
 import 'package:infinito_project_web/widgets/admin/new.dart';
 import 'package:infinito_project_web/widgets/admin/projects.dart';
 
+import '../widgets/admin/add_new.dart';
+
 appRoutes() => [
   GetPage(
     name: "/home",
@@ -80,7 +82,12 @@ appRoutes() => [
     middlewares: [RouteMiddleware()],
     transitionDuration: const Duration(milliseconds: 500),
   ),
-
+  GetPage(
+    name: '/admin/add/new',
+    page: () => AddNewPage(),
+    middlewares: [RouteMiddleware()],
+    transitionDuration: const Duration(milliseconds: 500),
+  ),
 ];
 
 class RouteMiddleware extends GetMiddleware {

@@ -4,38 +4,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:cloudinary/cloudinary.dart';
 import 'package:get/get.dart';
+import 'package:infinito_project_web/models/AddNewRequestModel.dart';
 import 'package:infinito_project_web/models/AddProjectRequestModel.dart';
 import 'package:infinito_project_web/models/ProjectResponseModel.dart';
 
-import '../models/single_project_response_model.dart';
+import '../models/SingleProjectResponseModel.dart';
 
 class AdminController extends GetxController{
-  TextEditingController project_name_edit = TextEditingController();
-  TextEditingController project_description_edit = TextEditingController();
+  //Add Project
   var projectTitle = "".obs;
-  var projectTitleForEdit = "".obs;
   var projectDescription = "".obs;
-  var projectDescriptionForEdit = "".obs;
   var imageUrl = <String>[].obs;
-  var imageUrlForEdit = <String>[].obs;
   var imageFiles = <Uint8List>[].obs;
-  var imageFilesEdit = <Uint8List>[].obs;
   var isLoading = false.obs;
-  var isLoadingForEdit = false.obs;
-  var isLoadingForSingleProject = false.obs;
   var isLoadingProjects = false.obs;
   var projectsResponseModel = ProjectResponseModel().obs;
-  var selectedProject = Project().obs;
-  var selectedId = "".obs;
-  final cloudinary =
-  Cloudinary.signedConfig(apiKey: "188489993429478",apiSecret: "rLCldE4fhsd2bALQCy7pOERNFRE",cloudName: "douhpv6i7");
-  Future<CloudinaryResponse?> uploadImage(Uint8List image) async {
-      final response = await cloudinary.upload(
-          fileBytes: image,
-          resourceType: CloudinaryResourceType.image,
-          folder: "/projectsImages");
-      return response;
-  }
   sendImages() async {
     isLoading.value = true;
     for (var element in imageFiles) {
@@ -45,18 +28,6 @@ class AdminController extends GetxController{
         isLoading.value = false;
       }
       imageUrl.add(response?.secureUrl ?? "");
-    }
-  }
-
-  sendImagesForEdit() async {
-    isLoadingForEdit.value = true;
-    for (var element in imageFilesEdit) {
-      var response = await uploadImage(element);
-      print(response?.secureUrl);
-      if (response?.isSuccessful == false){
-        isLoadingForEdit.value = false;
-      }
-      imageUrlForEdit.add(response?.secureUrl ?? "");
     }
   }
   sendProject()async{
@@ -72,8 +43,8 @@ class AdminController extends GetxController{
     var response = await http.post(
       Uri.parse(url),
       headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-    },
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
       body: jsonQuery,
     );
     if (response.statusCode == 201) {
@@ -87,6 +58,89 @@ class AdminController extends GetxController{
       return "";
     }
   }
+
+  //Edit Project
+  TextEditingController project_name_edit = TextEditingController();
+  TextEditingController project_description_edit = TextEditingController();
+  var projectTitleForEdit = "".obs;
+  var projectDescriptionForEdit = "".obs;
+  var imageUrlForEdit = <String>[].obs;
+  var imageFilesEdit = <Uint8List>[].obs;
+  var isLoadingForEdit = false.obs;
+  var isLoadingForSingleProject = false.obs;
+  var selectedProject = Project().obs;
+  var selectedId = "".obs;
+  sendImagesForEdit() async {
+    isLoadingForEdit.value = true;
+    for (var element in imageFilesEdit) {
+      var response = await uploadImage(element);
+      print(response?.secureUrl);
+      if (response?.isSuccessful == false){
+        isLoadingForEdit.value = false;
+      }
+      imageUrlForEdit.add(response?.secureUrl ?? "");
+    }
+  }
+
+  //Add New
+  var newImage = Uint8List(0).obs;
+  var newImageUrl = "".obs;
+  var isNewLoading = false.obs;
+  var newTitle = "".obs;
+  var newDescription = "".obs;
+  sendImageForNew() async {
+    isNewLoading.value = true;
+      var response = await uploadImage(newImage.value);
+      print(response?.secureUrl);
+      if (response?.isSuccessful == false) {
+        isLoading.value = false;
+      }
+      newImageUrl.value = response?.secureUrl ?? "";
+
+  }
+  sendNew()async{
+    await sendImageForNew();
+    var model = AddNewRequestModel();
+    model.name = newTitle.value;
+    model.description = newDescription.value;
+    model.image = newImageUrl.value;
+    String jsonQuery = json.encode(model.toJson());
+
+    var url = "http://localhost:4000/api/news";
+    print(jsonQuery);
+    var response = await http.post(
+      Uri.parse(url),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonQuery,
+    );
+    if (response.statusCode == 201) {
+      isNewLoading.value = false;
+      print(response.body.toString());
+      print('New send successfully');
+      return response.body;
+    } else {
+      isNewLoading.value = false;
+      print('Failed to send new: ${response.reasonPhrase}');
+      return "";
+    }
+  }
+
+
+  final cloudinary =
+  Cloudinary.signedConfig(apiKey: "188489993429478",apiSecret: "rLCldE4fhsd2bALQCy7pOERNFRE",cloudName: "douhpv6i7");
+  Future<CloudinaryResponse?> uploadImage(Uint8List image) async {
+      final response = await cloudinary.upload(
+          fileBytes: image,
+          resourceType: CloudinaryResourceType.image,
+          folder: "/projectsImages");
+      return response;
+  }
+
+
+
+
   getProjects() async{
     isLoadingProjects.value = true;
     await Future.delayed(const Duration(seconds: 1));
