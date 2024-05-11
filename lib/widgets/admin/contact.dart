@@ -1,8 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:infinito_project_web/controller/adminController/contactController.dart';
 
 import '../../constant/colors.dart';
-class ContactsAdminPage extends StatelessWidget {
+
+class ContactsAdminPage extends StatefulWidget {
   const ContactsAdminPage({Key? key}) : super(key: key);
+
+  @override
+  State<ContactsAdminPage> createState() => _ContactsAdminPageState();
+}
+
+class _ContactsAdminPageState extends State<ContactsAdminPage> {
+  ContactController contactController = Get.put(ContactController());
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    contactController.getContacts();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,87 +55,69 @@ class ContactsAdminPage extends StatelessWidget {
                           fontSize: 40,
                           color: CustomColor.appBarBg),),
                   ),
-                  ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: 5,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 8.0),
-                          child: ListTile(
-                            title: const Text("Talep",
-                                style: TextStyle(
-                                    overflow: TextOverflow.ellipsis,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 24,
-                                    color: CustomColor.appBarBg)),
-                            onTap: () {},
-                            subtitle: const Text("27.03.3003",style: TextStyle(
-                                overflow: TextOverflow.ellipsis,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 12,
-                                color: CustomColor.appBarBg)),
-                            leading: const Text("1 -",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 30,
-                                    color: CustomColor.appBarBg)),
-                            trailing: SizedBox(
-                              width: 140,
-                              height: 60,
-                              child: Row(
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {},
-                                    child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius
-                                              .circular(20),
-                                          color: CustomColor
-                                              .appBarBg,
-                                        ),
-                                        child: const Padding(
-                                          padding: EdgeInsets
-                                              .symmetric(
-                                              horizontal: 20.0,
-                                              vertical: 5),
-                                          child: Center(
-                                              child: Icon(Icons
-                                                  .edit_note_sharp,
-                                                  size: 20,
-                                                  color: CustomColor
-                                                      .bgColor)),
-                                        )),
-                                  ),
-                                  const SizedBox(width: 5),
-                                  GestureDetector(
-                                    onTap: () {},
-                                    child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius
-                                              .circular(20),
-                                          color: CustomColor
-                                              .appBarBg,
-                                        ),
-                                        child: const Padding(
-                                          padding: EdgeInsets
-                                              .symmetric(
-                                              horizontal: 20.0,
-                                              vertical: 5),
-                                          child: Center(
-                                              child: Icon(Icons
-                                                  .delete_outline,
-                                                  size: 20,
-                                                  color: CustomColor
-                                                      .bgColor)),
-                                        )),
-                                  ),
-                                ],
+                  Obx(() {
+                    return ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: contactController.contactResponseModel.value
+                            .contacts?.length ?? 0,
+                        itemBuilder: (context, index) {
+                          var model = contactController.contactResponseModel.value
+                              .contacts?[index];
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 8.0),
+                            child: ListTile(
+                              title: Text(model?.name ?? "",
+                                  style: const TextStyle(
+                                      overflow: TextOverflow.ellipsis,
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 24,
+                                      color: CustomColor.appBarBg)),
+                              onTap: () {},
+                              subtitle: const Text(
+                                  "27.03.3003", style: TextStyle(
+                                  overflow: TextOverflow.ellipsis,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12,
+                                  color: CustomColor.appBarBg)),
+                              leading: Text("${index + 1}",
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 30,
+                                      color: CustomColor.appBarBg)),
+                              trailing: SizedBox(
+                                width: 60,
+                                height: 60,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    contactController.deleteContact(
+                                        model?.sId ?? "");
+                                  },
+                                  child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius
+                                            .circular(20),
+                                        color: CustomColor
+                                            .appBarBg,
+                                      ),
+                                      child: const Padding(
+                                        padding: EdgeInsets
+                                            .symmetric(
+                                            horizontal: 20.0,
+                                            vertical: 5),
+                                        child: Center(
+                                            child: Icon(Icons
+                                                .delete_outline,
+                                                size: 20,
+                                                color: CustomColor
+                                                    .bgColor)),
+                                      )),
+                                ),
                               ),
                             ),
-                          ),
-                        );
-                      }),
+                          );
+                        });
+                  }),
                 ],
               ),
             ),

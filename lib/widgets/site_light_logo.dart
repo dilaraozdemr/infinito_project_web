@@ -6,7 +6,7 @@ class SiteLightLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: () => Get.toNamed("/admin"),
+        onTap: () => Get.rootDelegate.toNamed("/admin"),
         child: Image.asset("assets/image/light_logo.png", width: 160, height: 160,));
   }
 }

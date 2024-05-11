@@ -93,7 +93,11 @@ class _ProjectsAdminPageState extends State<ProjectsAdminPage> {
                                 child: Row(
                                   children: [
                                     GestureDetector(
-                                      onTap: () {},
+                                      onTap: () {
+                                        var modified = model?.sId?.replaceAll('"', '');
+                                        String url = "/admin/project/edit/$modified";
+                                        Get.toNamed(url);
+                                      },
                                       child: Container(
                                           decoration: BoxDecoration(
                                             borderRadius: BorderRadius

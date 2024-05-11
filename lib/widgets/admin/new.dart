@@ -89,7 +89,11 @@ class _NewsAdminPageState extends State<NewsAdminPage> {
                                 child: Row(
                                   children: [
                                     GestureDetector(
-                                      onTap: () {},
+                                      onTap: () {
+                                        var modified = model?.sId?.replaceAll('"', '');
+                                        String url = "/admin/news/edit/$modified";
+                                        Get.rootDelegate.toNamed(url);
+                                      },
                                       child: Container(
                                           decoration: BoxDecoration(
                                             borderRadius: BorderRadius

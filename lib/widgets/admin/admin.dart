@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:infinito_project_web/constant/colors.dart';
+import 'package:infinito_project_web/controller/adminController/contactController.dart';
 import 'package:infinito_project_web/controller/adminController/newController.dart';
 import 'package:infinito_project_web/controller/adminController/projectController.dart';
 import 'package:infinito_project_web/widgets/site_dark_logo.dart';
@@ -20,12 +21,15 @@ class Admin extends StatefulWidget {
 class _AdminState extends State<Admin> {
   AdminController adminController = Get.put(AdminController());
   NewController newController = Get.put(NewController());
+  ContactController contactController = Get.put(ContactController());
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     adminController.getProjects();
     newController.getNews();
+    contactController.getContacts();
   }
 
   @override
@@ -77,8 +81,8 @@ class _AdminState extends State<Admin> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: GestureDetector(
-                            onTap: () async{
-                              await Get.toNamed("/admin/add/project");
+                            onTap: () async {
+                              await Get.toNamed("/admin/projects/add");
                               adminController.getProjects();
                             },
                             child: Container(
@@ -116,10 +120,10 @@ class _AdminState extends State<Admin> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: GestureDetector(
-                            onTap: ()async{
-                              await Get.toNamed('/admin/add/new');
+                            onTap: () async {
+                              await Get.toNamed('/admin/news/add');
                               newController.getNews();
-                              },
+                            },
                             child: Container(
                               decoration: BoxDecoration(
                                 border: Border.all(color: CustomColor.appBarBg,
@@ -228,11 +232,17 @@ class _AdminState extends State<Admin> {
                                           color: CustomColor.appBarBg),),
                                   ),
                                   Obx(() {
-                                    return adminController.isLoadingProjects.value ? CircularProgressIndicator():ListView.builder(
+                                    return adminController.isLoadingProjects
+                                        .value
+                                        ? CircularProgressIndicator()
+                                        : ListView.builder(
                                         shrinkWrap: true,
-                                        itemCount: adminController.getProjectsItemCount(),
+                                        itemCount: adminController
+                                            .getProjectsItemCount(),
                                         itemBuilder: (context, index) {
-                                          var model = adminController.projectsResponseModel.value.projects?[index];
+                                          var model = adminController
+                                              .projectsResponseModel.value
+                                              .projects?[index];
                                           return Padding(
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 8.0),
@@ -256,7 +266,7 @@ class _AdminState extends State<Admin> {
                                                       fontSize: 12,
                                                       color: CustomColor
                                                           .appBarBg)),
-                                              leading: Text("${index+1} -",
+                                              leading: Text("${index + 1} -",
                                                   style: const TextStyle(
                                                       fontWeight: FontWeight
                                                           .w600,
@@ -270,9 +280,11 @@ class _AdminState extends State<Admin> {
                                                   children: [
                                                     GestureDetector(
                                                       onTap: () {
-                                                        var modified = model?.sId?.replaceAll('"', '');
-                                                        String url = "/admin/edit/project/$modified";
-                                                         Get.toNamed(url);
+                                                        var modified = model
+                                                            ?.sId?.replaceAll(
+                                                            '"', '');
+                                                        String url = "/admin/project/edit/$modified";
+                                                        Get.toNamed(url);
                                                       },
                                                       child: Container(
                                                           decoration: BoxDecoration(
@@ -298,7 +310,9 @@ class _AdminState extends State<Admin> {
                                                     const SizedBox(width: 5),
                                                     GestureDetector(
                                                       onTap: () {
-                                                        adminController.deleteProject(model?.sId ?? "");
+                                                        adminController
+                                                            .deleteProject(
+                                                            model?.sId ?? "");
                                                       },
                                                       child: Container(
                                                           decoration: BoxDecoration(
@@ -387,21 +401,29 @@ class _AdminState extends State<Admin> {
                                           color: CustomColor.appBarBg),),
                                   ),
                                   Obx(() {
-                                    return newController.isLoadingNews.value ? CircularProgressIndicator():ListView.builder(
+                                    return newController.isLoadingNews.value
+                                        ? CircularProgressIndicator()
+                                        : ListView.builder(
                                         shrinkWrap: true,
-                                        itemCount: newController.getNewsItemCount(),
+                                        itemCount: newController
+                                            .getNewsItemCount(),
                                         itemBuilder: (context, index) {
-                                          var model = newController.newResponseModel.value.news?[index];
+                                          var model = newController
+                                              .newResponseModel.value
+                                              .news?[index];
                                           return Padding(
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 8.0),
                                             child: ListTile(
                                               title: Text(model?.name ?? "",
                                                   style: const TextStyle(
-                                                      overflow: TextOverflow.ellipsis,
-                                                      fontWeight: FontWeight.w400,
+                                                      overflow: TextOverflow
+                                                          .ellipsis,
+                                                      fontWeight: FontWeight
+                                                          .w400,
                                                       fontSize: 24,
-                                                      color: CustomColor.appBarBg)),
+                                                      color: CustomColor
+                                                          .appBarBg)),
                                               onTap: () {},
                                               subtitle: const Text("27.03.3003",
                                                   style: TextStyle(
@@ -412,7 +434,7 @@ class _AdminState extends State<Admin> {
                                                       fontSize: 12,
                                                       color: CustomColor
                                                           .appBarBg)),
-                                              leading: Text("${index+1} -",
+                                              leading: Text("${index + 1} -",
                                                   style: const TextStyle(
                                                       fontWeight: FontWeight
                                                           .w600,
@@ -426,8 +448,10 @@ class _AdminState extends State<Admin> {
                                                   children: [
                                                     GestureDetector(
                                                       onTap: () {
-                                                        var modified = model?.sId?.replaceAll('"', '');
-                                                        String url = "/admin/edit/new/$modified";
+                                                        var modified = model
+                                                            ?.sId?.replaceAll(
+                                                            '"', '');
+                                                        String url = "/admin/new/edit/$modified";
                                                         Get.toNamed(url);
                                                       },
                                                       child: Container(
@@ -454,7 +478,8 @@ class _AdminState extends State<Admin> {
                                                     const SizedBox(width: 5),
                                                     GestureDetector(
                                                       onTap: () {
-                                                        newController.deleteNew(model?.sId ?? "");
+                                                        newController.deleteNew(
+                                                            model?.sId ?? "");
                                                       },
                                                       child: Container(
                                                           decoration: BoxDecoration(
@@ -486,7 +511,7 @@ class _AdminState extends State<Admin> {
                                   }),
                                   const SizedBox(height: 40),
                                   GestureDetector(
-                                    onTap: () => Get.toNamed("/admin/news"),
+                                    onTap: () => Get.rootDelegate.toNamed("/admin/news"),
                                     child: Container(
                                       decoration: BoxDecoration(
                                         color: CustomColor.appBarBg,
@@ -543,91 +568,77 @@ class _AdminState extends State<Admin> {
                                           fontSize: 40,
                                           color: CustomColor.appBarBg),),
                                   ),
-                                  ListView.builder(
-                                      shrinkWrap: true,
-                                      itemCount: 5,
-                                      itemBuilder: (context, index) {
-                                        return Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 8.0),
-                                          child: ListTile(
-                                            title: const Text("İletişim",
-                                                style: TextStyle(
-                                                    overflow: TextOverflow
-                                                        .ellipsis,
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 24,
-                                                    color: CustomColor
-                                                        .appBarBg)),
-                                            onTap: () {},
-                                            subtitle: const Text(
-                                                "27.03.3003", style: TextStyle(
-                                                overflow: TextOverflow.ellipsis,
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 12,
-                                                color: CustomColor.appBarBg)),
-                                            leading: const Text("1 -",
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.w600,
-                                                    fontSize: 30,
-                                                    color: CustomColor
-                                                        .appBarBg)),
-                                            trailing: SizedBox(
-                                              width: 140,
-                                              height: 60,
-                                              child: Row(
-                                                children: [
-                                                  GestureDetector(
-                                                    onTap: () {},
-                                                    child: Container(
-                                                        decoration: BoxDecoration(
-                                                          borderRadius: BorderRadius
-                                                              .circular(20),
-                                                          color: CustomColor
-                                                              .appBarBg,
-                                                        ),
-                                                        child: const Padding(
-                                                          padding: EdgeInsets
-                                                              .symmetric(
-                                                              horizontal: 20.0,
-                                                              vertical: 5),
-                                                          child: Center(
-                                                              child: Icon(Icons
-                                                                  .edit_note_sharp,
-                                                                  size: 20,
-                                                                  color: CustomColor
-                                                                      .bgColor)),
-                                                        )),
-                                                  ),
-                                                  const SizedBox(width: 5),
-                                                  GestureDetector(
-                                                    onTap: () {},
-                                                    child: Container(
-                                                        decoration: BoxDecoration(
-                                                          borderRadius: BorderRadius
-                                                              .circular(20),
-                                                          color: CustomColor
-                                                              .appBarBg,
-                                                        ),
-                                                        child: const Padding(
-                                                          padding: EdgeInsets
-                                                              .symmetric(
-                                                              horizontal: 20.0,
-                                                              vertical: 5),
-                                                          child: Center(
-                                                              child: Icon(Icons
-                                                                  .delete_outline,
-                                                                  size: 20,
-                                                                  color: CustomColor
-                                                                      .bgColor)),
-                                                        )),
-                                                  ),
-                                                ],
+                                  Obx(() {
+                                    return contactController.isLoadingContacts.value ? CircularProgressIndicator():ListView.builder(
+                                        shrinkWrap: true,
+                                        itemCount: contactController.getContactsItemCount(),
+                                        itemBuilder: (context, index) {
+                                          var model = contactController.contactResponseModel.value.contacts?[index];
+                                          return Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 8.0),
+                                            child: ListTile(
+                                              title: Text(model?.name ?? "",
+                                                  style: const TextStyle(
+                                                      overflow: TextOverflow
+                                                          .ellipsis,
+                                                      fontWeight: FontWeight
+                                                          .w400,
+                                                      fontSize: 24,
+                                                      color: CustomColor
+                                                          .appBarBg)),
+                                              onTap: () {},
+                                              subtitle: const Text(
+                                                  "27.03.3003",
+                                                  style: TextStyle(
+                                                      overflow: TextOverflow
+                                                          .ellipsis,
+                                                      fontWeight: FontWeight
+                                                          .w600,
+                                                      fontSize: 12,
+                                                      color: CustomColor
+                                                          .appBarBg)),
+                                              leading: Text("${index + 1} -",
+                                                  style: const TextStyle(
+                                                      fontWeight: FontWeight
+                                                          .w600,
+                                                      fontSize: 30,
+                                                      color: CustomColor
+                                                          .appBarBg)),
+                                              trailing: SizedBox(
+                                                width: 70,
+                                                height: 60,
+                                                child: GestureDetector(
+                                                  onTap: () {
+                                                    contactController
+                                                        .deleteContact(model
+                                                        ?.sId ?? "");
+                                                  },
+                                                  child: Container(
+                                                      decoration: BoxDecoration(
+                                                        borderRadius: BorderRadius
+                                                            .circular(20),
+                                                        color: CustomColor
+                                                            .appBarBg,
+                                                      ),
+                                                      child: const Padding(
+                                                        padding: EdgeInsets
+                                                            .symmetric(
+                                                            horizontal: 20.0,
+                                                            vertical: 5),
+                                                        child: Center(
+                                                            child: Icon(Icons
+                                                                .delete_outline,
+                                                                size: 20,
+                                                                color: CustomColor
+                                                                    .bgColor)),
+                                                      )),
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        );
-                                      }),
+                                          );
+                                        });
+                                  }),
                                   const SizedBox(height: 40),
                                   GestureDetector(
                                     onTap: () => Get.toNamed("/admin/contacts"),

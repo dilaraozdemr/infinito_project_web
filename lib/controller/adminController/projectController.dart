@@ -122,7 +122,6 @@ class AdminController extends GetxController{
     }
   }
 
-
   getProject(String id) async{
     isLoadingForSingleProject.value = true;
     await Future.delayed(const Duration(seconds: 1));
