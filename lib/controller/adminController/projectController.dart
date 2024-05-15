@@ -114,6 +114,7 @@ class AdminController extends GetxController{
       return "";
     }
   }
+
   getProjectsItemCount(){
     if(projectsResponseModel.value.projects!.length <= 4){
       return projectsResponseModel.value.projects!.length;

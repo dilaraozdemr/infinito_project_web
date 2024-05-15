@@ -44,7 +44,6 @@ class _HoverContainerState extends State<HoverContainer> {
                   child: OverflowBox(
                     alignment: Alignment.center,
                     child: FittedBox(
-                      fit: BoxFit.cover,
                       child: widget.child,
                     ),
                   ),

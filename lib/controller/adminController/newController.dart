@@ -9,7 +9,7 @@ import '../../models/AddNewRequestModel.dart';
 import '../../models/NewResponseModel.dart';
 import '../../models/SingleNewResponseModel.dart';
 
-class NewController{
+class NewController extends GetxController{
   var newResponseModel = NewResponseModel().obs;
   var isLoadingNews = false.obs;
   var newImage = Uint8List(0).obs;

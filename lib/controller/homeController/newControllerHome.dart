@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import '../../models/NewResponseModel.dart';
 
-class NewControllerHome{
+class NewControllerHome extends GetxController{
   var newResponseModel = NewResponseModel().obs;
   var isLoadingNews = false.obs;
   var newImage = Uint8List(0).obs;

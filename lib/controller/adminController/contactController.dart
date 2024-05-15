@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:infinito_project_web/models/ContactResponseModel.dart';
-class ContactController{
+class ContactController extends GetxController{
 
   var isLoadingContacts = false.obs;
   var contactResponseModel = ContactResponseModel().obs;

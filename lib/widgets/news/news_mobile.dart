@@ -1,8 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../constant/colors.dart';
-class NewsMobile extends StatelessWidget {
+import '../../controller/homeController/newControllerHome.dart';
+class NewsMobile extends StatefulWidget {
   const NewsMobile({Key? key}) : super(key: key);
+
+  @override
+  State<NewsMobile> createState() => _NewsMobileState();
+}
+
+class _NewsMobileState extends State<NewsMobile> {
+  NewControllerHome newControllerHome = Get.put(NewControllerHome());
+
+  @override
+  void initState() {
+    super.initState();
+    newControllerHome.getNews();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,215 +30,65 @@ class NewsMobile extends StatelessWidget {
               fontWeight: FontWeight.w700, fontSize: 40
           ),),
           const SizedBox(height: 20,),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: CustomColor.appBarBg, width: 1),
-            ),
-            child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20),
-                child: Row(
-                  children: [
-                    const Flexible(
-                      child: Column(
-                          crossAxisAlignment:CrossAxisAlignment.start ,
+          Obx(() {
+            return GridView.count(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              crossAxisCount: 2,
+              crossAxisSpacing: 20,
+              mainAxisSpacing: 20,
+              padding: const EdgeInsets.all(10),
+              children: List.generate(
+                  newControllerHome.newResponseModel.value
+                      .news?.length ?? 0, (index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 8.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: CustomColor.appBarBg, width: 1),
+                    ),
+                    child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "Duyuru 1", style: TextStyle(
-                                fontWeight: FontWeight.w600, fontSize: 25
+                              newControllerHome.newResponseModel.value.news?[index].name ?? "", style: const TextStyle(
+                                fontWeight: FontWeight.w600, fontSize: 34
                             ),
                             ),
-                            SizedBox(height: 20,),
-                            Text(
-                              "This text is ssdafsfasfdasfasfasfsdfasfdweşrıthqeruhfqkeljdhfjqkehfjkldahfkjdshfkjasdhfjkhasdjkf lkdfjkasdfjkdsjfklsajflkasd klsdfjkdsjfklajflkasddsakfjaksdjfksdjfkldso long and long and long and long and long and that's why it is not wrapping to next line.", style: TextStyle(
-                                fontWeight: FontWeight.w500, fontSize: 14
-                            ),)
-                          ]),
-                    ),
-                    const SizedBox(width: 40),
-                    Column(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: Image.asset(
-                            'assets/image/home.jpeg',
-                            fit: BoxFit.cover,
-                            width: 200,
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
-                )),
-          ),
-          const SizedBox(height: 20,),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: CustomColor.appBarBg, width: 1),
-            ),
-            child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20),
-                child: Row(
-                  children: [
-                    const Flexible(
-                      child: Column(
-                          crossAxisAlignment:CrossAxisAlignment.start ,
-                          children: [
-                            Text(
-                              "Duyuru 1", style: TextStyle(
-                                fontWeight: FontWeight.w600, fontSize: 25
+                            Flexible(
+                              child: Column(
+                                  children: [
+                                    Text(
+                                      newControllerHome.newResponseModel.value.news?[index].description ?? "", style: const TextStyle(
+                                        fontWeight: FontWeight.w400, fontSize: 18
+                                    ),)
+                                  ]),
                             ),
-                            ),
-                            SizedBox(height: 20,),
-                            Text(
-                              "This text is ssdafsfasfdasfasfasfsdfasfdweşrıthqeruhfqkeljdhfjqkehfjkldahfkjdshfkjasdhfjkhasdjkf lkdfjkasdfjkdsjfklsajflkasd klsdfjkdsjfklajflkasddsakfjaksdjfksdjfkldso long and long and long and long and long and that's why it is not wrapping to next line.", style: TextStyle(
-                                fontWeight: FontWeight.w500, fontSize: 14
-                            ),)
-                          ]),
-                    ),
-                    const SizedBox(width: 40),
-                    Column(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: Image.asset(
-                            'assets/image/home.jpeg',
-                            fit: BoxFit.cover,
-                            width: 200,
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
-                )),
-          ),
-          const SizedBox(height: 20,),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: CustomColor.appBarBg, width: 1),
-            ),
-            child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20),
-                child: Row(
-                  children: [
-                    const Flexible(
-                      child: Column(
-                          crossAxisAlignment:CrossAxisAlignment.start ,
-                          children: [
-                            Text(
-                              "Duyuru 1", style: TextStyle(
-                                fontWeight: FontWeight.w600, fontSize: 25
-                            ),
-                            ),
-                            SizedBox(height: 20,),
-                            Text(
-                              "This text is ssdafsfasfdasfasfasfsdfasfdweşrıthqeruhfqkeljdhfjqkehfjkldahfkjdshfkjasdhfjkhasdjkf lkdfjkasdfjkdsjfklsajflkasd klsdfjkdsjfklajflkasddsakfjaksdjfksdjfkldso long and long and long and long and long and that's why it is not wrapping to next line.", style: TextStyle(
-                                fontWeight: FontWeight.w500, fontSize: 14
-                            ),)
-                          ]),
-                    ),
-                    const SizedBox(width: 40),
-                    Column(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: Image.asset(
-                            'assets/image/home.jpeg',
-                            fit: BoxFit.cover,
-                            width: 200,
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
-                )),
-          ),
-          const SizedBox(height: 20,),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: CustomColor.appBarBg, width: 1),
-            ),
-            child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20),
-                child: Row(
-                  children: [
-                    const Flexible(
-                      child: Column(
-                          crossAxisAlignment:CrossAxisAlignment.start ,
-                          children: [
-                            Text(
-                              "Duyuru 1", style: TextStyle(
-                                fontWeight: FontWeight.w600, fontSize: 25
-                            ),
-                            ),
-                            SizedBox(height: 20,),
-                            Text(
-                              "This text is ssdafsfasfdasfasfasfsdfasfdweşrıthqeruhfqkeljdhfjqkehfjkldahfkjdshfkjasdhfjkhasdjkf lkdfjkasdfjkdsjfklsajflkasd klsdfjkdsjfklajflkasddsakfjaksdjfksdjfkldso long and long and long and long and long and that's why it is not wrapping to next line.", style: TextStyle(
-                                fontWeight: FontWeight.w500, fontSize: 14
-                            ),)
-                          ]),
-                    ),
-                    const SizedBox(width: 40),
-                    Column(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: Image.asset(
-                            'assets/image/home.jpeg',
-                            fit: BoxFit.cover,
-                            width: 200,
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
-                )),
-          ),
-          const SizedBox(height: 20,),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: CustomColor.appBarBg, width: 1),
-            ),
-            child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20),
-                child: Row(
-                  children: [
-                    const Flexible(
-                      child: Column(
-                          crossAxisAlignment:CrossAxisAlignment.start ,
-                          children: [
-                            Text(
-                              "Duyuru 1", style: TextStyle(
-                                fontWeight: FontWeight.w600, fontSize: 25
-                            ),
-                            ),
-                            SizedBox(height: 20,),
-                            Text(
-                              "This text is ssdafsfasfdasfasfasfsdfasfdweşrıthqeruhfqkeljdhfjqkehfjkldahfkjdshfkjasdhfjkhasdjkf lkdfjkasdfjkdsjfklsajflkasd klsdfjkdsjfklajflkasddsakfjaksdjfksdjfkldso long and long and long and long and long and that's why it is not wrapping to next line.", style: TextStyle(
-                                fontWeight: FontWeight.w500, fontSize: 14
-                            ),)
-                          ]),
-                    ),
-                    const SizedBox(width: 40),
-                    Column(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: Image.asset(
-                            'assets/image/home.jpeg',
-                            fit: BoxFit.cover,
-                            width: 200,
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
-                )),
-          ),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(20),
+                                    child: Image.network(
+                                      newControllerHome.newResponseModel.value.news?[index].image ?? "",
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        )),
+                  ),
+                );
+              }),
+            );
+          }),
         ],
       ),
     );
