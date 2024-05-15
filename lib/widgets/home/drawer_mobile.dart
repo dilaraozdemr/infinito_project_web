@@ -40,7 +40,7 @@ class DrawerMobile extends StatelessWidget {
           fontFamily: "Playfair",
           fontSize: 16,
         ),
-        onTap: () => Get.toNamed(drawerRoutes[a]),
+        onTap: () => Get.rootDelegate.toNamed(drawerRoutes[a]),
         leading: Container(
           width: 5,
           height: double.infinity,

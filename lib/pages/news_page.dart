@@ -44,7 +44,7 @@ class _NewsPageState extends State<NewsPage> {
                 ),
                 const SizedBox(height: 30,),
                 constraints.maxWidth >= kMinDesktopWidth
-                    ? NewsDesktop()
+                    ? const NewsDesktop()
                     : const NewsMobile(),
                 constraints.maxWidth >= kMinDesktopWidth
                     ? const FooterDesktop()

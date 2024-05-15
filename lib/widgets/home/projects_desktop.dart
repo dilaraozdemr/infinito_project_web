@@ -81,7 +81,7 @@ class _ProjectsDesktopState extends State<ProjectsDesktop> {
                   Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: GestureDetector(
-                        onTap: () => Get.toNamed("/projects"),
+                        onTap: () => Get.rootDelegate.toNamed("/projects"),
                         child: Container(
                           decoration: BoxDecoration(
                             color: CustomColor.appBarBg,

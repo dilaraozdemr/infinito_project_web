@@ -6,7 +6,7 @@ class SiteDarkLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Get.toNamed("/home"),
+      onTap: () => Get.rootDelegate.toNamed("/home"),
       child: Image.asset("assets/image/dark_logo.png", width: 120, height: 120,),
     );
   }

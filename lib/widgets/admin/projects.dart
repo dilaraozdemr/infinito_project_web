@@ -96,7 +96,7 @@ class _ProjectsAdminPageState extends State<ProjectsAdminPage> {
                                       onTap: () {
                                         var modified = model?.sId?.replaceAll('"', '');
                                         String url = "/admin/project/edit/$modified";
-                                        Get.toNamed(url);
+                                        Get.rootDelegate.toNamed(url);
                                       },
                                       child: Container(
                                           decoration: BoxDecoration(

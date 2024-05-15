@@ -82,7 +82,7 @@ class _AdminState extends State<Admin> {
                           padding: const EdgeInsets.all(8.0),
                           child: GestureDetector(
                             onTap: () async {
-                              await Get.toNamed("/admin/projects/add");
+                              await Get.rootDelegate.toNamed("/admin/projects/add");
                               adminController.getProjects();
                             },
                             child: Container(
@@ -121,7 +121,7 @@ class _AdminState extends State<Admin> {
                           padding: const EdgeInsets.all(8.0),
                           child: GestureDetector(
                             onTap: () async {
-                              await Get.toNamed('/admin/news/add');
+                              await Get.rootDelegate.toNamed('/admin/news/add');
                               newController.getNews();
                             },
                             child: Container(
@@ -284,7 +284,7 @@ class _AdminState extends State<Admin> {
                                                             ?.sId?.replaceAll(
                                                             '"', '');
                                                         String url = "/admin/project/edit/$modified";
-                                                        Get.toNamed(url);
+                                                        Get.rootDelegate.toNamed(url);
                                                       },
                                                       child: Container(
                                                           decoration: BoxDecoration(
@@ -344,7 +344,7 @@ class _AdminState extends State<Admin> {
                                   }),
                                   const SizedBox(height: 40),
                                   GestureDetector(
-                                    onTap: () => Get.toNamed("/admin/projects"),
+                                    onTap: () => Get.rootDelegate.toNamed("/admin/projects"),
                                     child: Container(
                                       decoration: BoxDecoration(
                                         color: CustomColor.appBarBg,
@@ -452,7 +452,7 @@ class _AdminState extends State<Admin> {
                                                             ?.sId?.replaceAll(
                                                             '"', '');
                                                         String url = "/admin/new/edit/$modified";
-                                                        Get.toNamed(url);
+                                                        Get.rootDelegate.toNamed(url);
                                                       },
                                                       child: Container(
                                                           decoration: BoxDecoration(
@@ -641,7 +641,7 @@ class _AdminState extends State<Admin> {
                                   }),
                                   const SizedBox(height: 40),
                                   GestureDetector(
-                                    onTap: () => Get.toNamed("/admin/contacts"),
+                                    onTap: () => Get.rootDelegate.toNamed("/admin/contacts"),
                                     child: Container(
                                       decoration: BoxDecoration(
                                         color: CustomColor.appBarBg,

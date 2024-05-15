@@ -15,17 +15,17 @@ class HeaderDesktop extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(child: buttonBar(1,(){
-            Get.toNamed("/projects");
+            Get.rootDelegate.toNamed("/projects");
           })),
           Expanded(child: buttonBar(2,(){
-            Get.toNamed("/who");
+            Get.rootDelegate.toNamed("/who");
           })),
-          Expanded(child: const SiteDarkLogo()),
+          const Expanded(child: SiteDarkLogo()),
           Expanded(child: buttonBar(3,(){
-            Get.toNamed("/contact");
+            Get.rootDelegate.toNamed("/contact");
           })),
           Expanded(child: buttonBar(4,(){
-            Get.toNamed("/news");
+            Get.rootDelegate.toNamed("/news");
           })),
         ],
       ),
