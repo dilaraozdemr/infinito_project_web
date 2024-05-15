@@ -451,7 +451,7 @@ class _AdminState extends State<Admin> {
                                                         var modified = model
                                                             ?.sId?.replaceAll(
                                                             '"', '');
-                                                        String url = "/admin/new/edit/$modified";
+                                                        String url = "/admin/news/edit/$modified";
                                                         Get.rootDelegate.toNamed(url);
                                                       },
                                                       child: Container(

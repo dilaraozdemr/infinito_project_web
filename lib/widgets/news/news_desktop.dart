@@ -79,7 +79,6 @@ class _NewsDesktopState extends State<NewsDesktop> {
                                           child: Image.network(
                                             newControllerHome.newResponseModel.value.news?[index].image ?? "",
                                             fit: BoxFit.cover,
-                                            width: 150,
                                           ),
                                         ),
                                       ),

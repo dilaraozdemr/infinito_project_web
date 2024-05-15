@@ -221,7 +221,7 @@ class _AddProjectPageState extends State<AddProjectPage> {
                                           return GestureDetector(
                                             onTap: adminController.isLoading.value ? null:() async {
                                               await adminController.sendProject();
-                                              Get.back();
+                                              Get.rootDelegate.toNamed("/admin");
                                             },
                                             child: Container(
                                               decoration: BoxDecoration(
@@ -366,7 +366,7 @@ class _AddProjectPageState extends State<AddProjectPage> {
                               GestureDetector(
                                 onTap: adminController.isLoading.value ? null:() async {
                                   await adminController.sendProject();
-                                  Get.back();
+                                 // Get.rootDelegate.popRoute();
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(

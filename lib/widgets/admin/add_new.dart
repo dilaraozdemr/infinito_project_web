@@ -219,7 +219,7 @@ class _AddProjectPageState extends State<AddNewPage> {
                                             onTap: newController.isNewLoading
                                                 .value ? null : () async {
                                               await newController.sendNew();
-                                              Get.back();
+                                              Get.rootDelegate.toNamed("/admin");
                                             },
                                             child: Container(
                                               decoration: BoxDecoration(
@@ -367,7 +367,7 @@ class _AddProjectPageState extends State<AddNewPage> {
                                 onTap: newController.isNewLoading
                                     .value ? null : () async {
                                   await newController.sendNew();
-                                  Get.back();
+                                  Get.rootDelegate.toNamed("/admin");
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(

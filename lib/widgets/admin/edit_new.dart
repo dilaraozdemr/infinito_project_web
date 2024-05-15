@@ -241,7 +241,7 @@ class _EditNewPageState extends State<EditNewPage> {
                                                     .isLoadingForEditNew
                                                     .value ? null : () async {
                                                   await newController.updateNew(newController.selectedNew.value.sId ?? "");
-                                                  Get.back();
+                                                  Get.rootDelegate.toNamed("/admin");
                                                 },
                                                 child: Container(
                                                   decoration: BoxDecoration(

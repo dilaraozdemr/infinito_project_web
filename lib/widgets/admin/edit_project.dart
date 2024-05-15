@@ -255,7 +255,7 @@ class _AddProjectPageState extends State<EditProjectPage> {
                                                       adminController
                                                           .selectedProject.value
                                                           .sId ?? "");
-                                                  Get.back();
+                                                  Get.rootDelegate.offAndToNamed("/admin");
                                                 },
                                                 child: Container(
                                                   decoration: BoxDecoration(
