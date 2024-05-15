@@ -214,6 +214,7 @@ class _AddProjectPageState extends State<AddNewPage> {
                                           ),
                                         ),
                                         const SizedBox(height: 20),
+
                                         Obx(() {
                                           return GestureDetector(
                                             onTap: newController.isNewLoading
