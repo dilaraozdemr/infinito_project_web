@@ -151,7 +151,18 @@ class _ContactDesktopState extends State<ContactDesktop> {
                     GestureDetector(
                       onTap: contactControllerHome.isContactLoading
                         .value ? null : () async {
-                          await contactControllerHome.sendContact();
+                        const snackBar = SnackBar(
+                          content: Text('Başarılı ! Mesajınız gönderilmiştir!'),
+                        );
+                        const snackBarFalse = SnackBar(
+                          content: Text('Başarısız! Tekrar Deneyiniz'),
+                        );
+                          var response = await contactControllerHome.sendContact();
+                          if(response){
+                            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                          }else{
+                            ScaffoldMessenger.of(context).showSnackBar(snackBarFalse);
+                          }
                           },
                       child: Container(
                         decoration: BoxDecoration(color: CustomColor.appBarBg, borderRadius: BorderRadius.circular(15),

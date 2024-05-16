@@ -29,13 +29,12 @@ class ContactControllerHome extends GetxController{
     if (response.statusCode == 201) {
       isContactLoading.value = false;
       print(response.body.toString());
-      print('New send successfully');
-      Get.snackbar("Başarılı", "Mesaj başarı ile gönderilmiştir.");
-      return response.body;
+      print('Contact send successfully');
+      return true;
     } else {
       isContactLoading.value = false;
-      print('Failed to send new: ${response.reasonPhrase}');
-      return "";
+      print('Failed to send contact: ${response.reasonPhrase}');
+      return false;
     }
   }
 }
