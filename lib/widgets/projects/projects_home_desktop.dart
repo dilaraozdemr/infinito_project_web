@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:infinito_project_web/controller/homeController/projectControllerHome.dart';
@@ -27,7 +28,9 @@ class _ProjectsHomeDesktopState extends State<ProjectsHomeDesktop> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      return Padding(
+      return projectControllerHome.isLoadingHomeProjects.value
+          ? const Center(child: CircularProgressIndicator())
+          : Padding(
         padding: const EdgeInsets.symmetric(
             horizontal: 15.0, vertical: 20),
         child: Column(
@@ -55,39 +58,51 @@ class _ProjectsHomeDesktopState extends State<ProjectsHomeDesktop> {
                       children:
                       List.generate(projectControllerHome.projectsResponseModel
                           .value.projects?.length ?? 0, (index) {
-                        return HoverContainer(
-                          onHover: (isHovering) {
-                            setState(() {
-                              hoverIndex = isHovering ? index : -1;
-                            });
+                        return GestureDetector(
+                          onTap: (){
+                            var modified = projectControllerHome.projectsResponseModel
+                                .value.projects?[index]
+                                .sId?.replaceAll(
+                                '"', '');
+                            String url = "/home/project/$modified";
+                            Get.rootDelegate.toNamed(url);
                           },
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: Image.network(
-                                  projectControllerHome.projectsResponseModel
-                                      .value.projects?[index].images?.first ??
-                                      "",
+                          child: HoverContainer(
+                            onHover: (isHovering) {
+                              setState(() {
+                                hoverIndex = isHovering ? index : -1;
+                              });
+                            },
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: CachedNetworkImage(
+                                    imageUrl: projectControllerHome.projectsResponseModel
+                                        .value.projects?[index].images?.first ??
+                                        "",
+                                    placeholder: (context, url) => CircularProgressIndicator(),
+                                    errorWidget: (context, url, error) => Icon(Icons.error),
+                                  ),
                                 ),
-                              ),
-                              if (hoverIndex == index)
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const SizedBox(height: 10),
-                                    Text(
-                                      projectControllerHome
-                                          .projectsResponseModel.value
-                                          .projects?[index].name ?? "",
-                                      style: const TextStyle(
-                                          color: Colors.white, fontSize: 20),
-                                    ),
-                                  ],
-                                ),
-                            ],
+                                if (hoverIndex == index)
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      const SizedBox(height: 10),
+                                      Text(
+                                        projectControllerHome
+                                            .projectsResponseModel.value
+                                            .projects?[index].name ?? "",
+                                        style: const TextStyle(
+                                            color: Colors.white, fontSize: 20),
+                                      ),
+                                    ],
+                                  ),
+                              ],
+                            ),
                           ),
                         );
                       }),

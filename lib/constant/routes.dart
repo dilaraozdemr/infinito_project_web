@@ -5,6 +5,7 @@ import 'package:infinito_project_web/pages/admin_page.dart';
 import 'package:infinito_project_web/pages/contact_page.dart';
 import 'package:infinito_project_web/pages/home_page.dart';
 import 'package:infinito_project_web/pages/news_page.dart';
+import 'package:infinito_project_web/pages/project_details_page.dart';
 import 'package:infinito_project_web/pages/projects_page.dart';
 import 'package:infinito_project_web/pages/who_we_are_page.dart';
 import 'package:infinito_project_web/widgets/admin/add_project.dart';
@@ -13,6 +14,7 @@ import 'package:infinito_project_web/widgets/admin/edit_new.dart';
 import 'package:infinito_project_web/widgets/admin/edit_project.dart';
 import 'package:infinito_project_web/widgets/admin/new.dart';
 import 'package:infinito_project_web/widgets/admin/projects.dart';
+import 'package:infinito_project_web/widgets/projects/projects_detail_home_desktop.dart';
 
 import '../widgets/admin/add_new.dart';
 
@@ -92,6 +94,12 @@ appRoutes() => [
   GetPage(
     name: '/admin/news/edit/:id',
     page: () => EditNewPage(),
+    middlewares: [RouteMiddleware()],
+    transitionDuration: const Duration(milliseconds: 500),
+  ),
+  GetPage(
+    name: '/home/project/:id',
+    page: () => ProjectDetailPage(),
     middlewares: [RouteMiddleware()],
     transitionDuration: const Duration(milliseconds: 500),
   ),

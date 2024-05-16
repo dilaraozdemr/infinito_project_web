@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -432,11 +433,11 @@ class _EditNewPageState extends State<EditNewPage> {
                                       children: [
                                         Container(
                                             color: Colors.transparent,
-                                            child:
-                                            Image.network(
-                                              newController.selectedNew.value.image ?? "",
-                                            )
-
+                                            child:CachedNetworkImage(
+                                              imageUrl: newController.selectedNew.value.image ?? "",
+                                              placeholder: (context, url) => CircularProgressIndicator(),
+                                              errorWidget: (context, url, error) => Icon(Icons.error),
+                                            ),
                                         ),
                                         Positioned(
                                           top: 0,

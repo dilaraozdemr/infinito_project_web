@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -255,7 +256,7 @@ class _AddProjectPageState extends State<EditProjectPage> {
                                                       adminController
                                                           .selectedProject.value
                                                           .sId ?? "");
-                                                  Get.rootDelegate.offAndToNamed("/admin");
+                                                  Get.rootDelegate.toNamed("/admin");
                                                 },
                                                 child: Container(
                                                   decoration: BoxDecoration(
@@ -455,12 +456,12 @@ class _AddProjectPageState extends State<EditProjectPage> {
                                     children: [
                                       Container(
                                           color: Colors.transparent,
-                                          child:
-                                          Image.network(
-                                            adminController.selectedProject
+                                          child:CachedNetworkImage(
+                                            imageUrl: adminController.selectedProject
                                                 .value.images?[index] ?? "",
-                                          )
-
+                                            placeholder: (context, url) => CircularProgressIndicator(),
+                                            errorWidget: (context, url, error) => Icon(Icons.error),
+                                          ),
                                       ),
                                       Positioned(
                                         top: 0,

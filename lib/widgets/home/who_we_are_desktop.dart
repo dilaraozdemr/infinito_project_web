@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 class WhoWeAreDesktop extends StatelessWidget {
   const WhoWeAreDesktop({Key? key}) : super(key: key);
@@ -89,11 +90,23 @@ class WhoWeAreDesktop extends StatelessWidget {
           ),
           const SizedBox(height: 25,),
           Row(children: [
-            Expanded(child: Image.asset("assets/image/home.jpeg")),
+            Expanded(child: CachedNetworkImage(
+              imageUrl: "assets/image/home.jpeg",
+              placeholder: (context, url) => CircularProgressIndicator(),
+              errorWidget: (context, url, error) => Icon(Icons.error),
+            )),
             const SizedBox(width: 10,),
-            Expanded(child: Image.asset("assets/image/home.jpeg")),
+            Expanded(child: CachedNetworkImage(
+              imageUrl: "assets/image/home.jpeg",
+              placeholder: (context, url) => CircularProgressIndicator(),
+              errorWidget: (context, url, error) => Icon(Icons.error),
+            )),
             const SizedBox(width: 10,),
-            Expanded(child: Image.asset("assets/image/home.jpeg")),
+            Expanded(child: CachedNetworkImage(
+              imageUrl: "assets/image/home.jpeg",
+              placeholder: (context, url) => CircularProgressIndicator(),
+              errorWidget: (context, url, error) => Icon(Icons.error),
+            )),
           ],)
         ],
       ),
