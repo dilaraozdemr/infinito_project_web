@@ -27,7 +27,7 @@ class MainMobile extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20.0),
                       image: const DecorationImage(
-                        image: AssetImage("assets/image/home.jpeg"),
+                        image: AssetImage("assets/image/ayo.jpg"),
                         fit: BoxFit.cover
                       ),
                     ),
@@ -36,7 +36,7 @@ class MainMobile extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20.0),
                       image: const DecorationImage(
-                          image: AssetImage("assets/image/home.jpeg"),
+                          image: AssetImage("assets/image/ayo3.jpg"),
                           fit: BoxFit.cover
                       ),
                     ),
@@ -45,7 +45,7 @@ class MainMobile extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20.0),
                       image: const DecorationImage(
-                          image: AssetImage("assets/image/home.jpeg"),
+                          image: AssetImage("assets/image/emreKaya.jpg"),
                           fit: BoxFit.cover
                       ),
                     ),
@@ -54,7 +54,7 @@ class MainMobile extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20.0),
                       image: const DecorationImage(
-                          image: AssetImage("assets/image/home.jpeg"),
+                          image: AssetImage("assets/image/mutfak.jpg"),
                           fit: BoxFit.cover
                       ),
                     ),

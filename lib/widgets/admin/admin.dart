@@ -257,15 +257,7 @@ class _AdminState extends State<Admin> {
                                                       color: CustomColor
                                                           .appBarBg)),
                                               onTap: () {},
-                                              subtitle: const Text("27.03.3003",
-                                                  style: TextStyle(
-                                                      overflow: TextOverflow
-                                                          .ellipsis,
-                                                      fontWeight: FontWeight
-                                                          .w600,
-                                                      fontSize: 12,
-                                                      color: CustomColor
-                                                          .appBarBg)),
+
                                               leading: Text("${index + 1} -",
                                                   style: const TextStyle(
                                                       fontWeight: FontWeight
@@ -425,15 +417,6 @@ class _AdminState extends State<Admin> {
                                                       color: CustomColor
                                                           .appBarBg)),
                                               onTap: () {},
-                                              subtitle: const Text("27.03.3003",
-                                                  style: TextStyle(
-                                                      overflow: TextOverflow
-                                                          .ellipsis,
-                                                      fontWeight: FontWeight
-                                                          .w600,
-                                                      fontSize: 12,
-                                                      color: CustomColor
-                                                          .appBarBg)),
                                               leading: Text("${index + 1} -",
                                                   style: const TextStyle(
                                                       fontWeight: FontWeight
@@ -569,7 +552,7 @@ class _AdminState extends State<Admin> {
                                           color: CustomColor.appBarBg),),
                                   ),
                                   Obx(() {
-                                    return contactController.isLoadingContacts.value ? CircularProgressIndicator():ListView.builder(
+                                    return contactController.isLoadingContacts.value ? const CircularProgressIndicator():ListView.builder(
                                         shrinkWrap: true,
                                         itemCount: contactController.getContactsItemCount(),
                                         itemBuilder: (context, index) {
@@ -578,7 +561,7 @@ class _AdminState extends State<Admin> {
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 8.0),
                                             child: ListTile(
-                                              title: Text(model?.name ?? "",
+                                              title: Text(model?.email ?? "",
                                                   style: const TextStyle(
                                                       overflow: TextOverflow
                                                           .ellipsis,
@@ -588,8 +571,7 @@ class _AdminState extends State<Admin> {
                                                       color: CustomColor
                                                           .appBarBg)),
                                               onTap: () {},
-                                              subtitle: const Text(
-                                                  "27.03.3003",
+                                              subtitle: const Text("27.03.3003",
                                                   style: TextStyle(
                                                       overflow: TextOverflow
                                                           .ellipsis,

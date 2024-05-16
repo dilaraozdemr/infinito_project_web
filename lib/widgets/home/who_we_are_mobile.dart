@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class WhoWeAreMobile extends StatelessWidget {
@@ -34,7 +35,11 @@ class WhoWeAreMobile extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 20,),
-              Center(child: Image.asset("assets/image/home.jpeg", fit: BoxFit.cover,width: 300,)),              ],
+              Center(child: CachedNetworkImage(
+                imageUrl: "assets/image/oda_View06.jpg",
+                placeholder: (context, url) => CircularProgressIndicator(),
+                errorWidget: (context, url, error) => Icon(Icons.error),
+              )),              ],
           ),
           const SizedBox(height: 20,),
           Column(
@@ -56,7 +61,11 @@ class WhoWeAreMobile extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 20,),
-              Center(child: Image.asset("assets/image/home.jpeg", fit: BoxFit.cover,width: 300,)),],
+              Center(child: CachedNetworkImage(
+                imageUrl: "assets/image/oda_View08.jpg",
+                placeholder: (context, url) => CircularProgressIndicator(),
+                errorWidget: (context, url, error) => Icon(Icons.error),
+              )),],
           ),
           const SizedBox(height: 20,),
           Column(
@@ -78,7 +87,11 @@ class WhoWeAreMobile extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 20,),
-              Center(child: Image.asset("assets/image/home.jpeg", fit: BoxFit.cover,width: 300,)),
+              Center(child: CachedNetworkImage(
+                imageUrl: "assets/image/oda_View09.jpg",
+                placeholder: (context, url) => CircularProgressIndicator(),
+                errorWidget: (context, url, error) => Icon(Icons.error),
+              )),
             ],
           )
         ],

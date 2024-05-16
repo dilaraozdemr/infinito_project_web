@@ -16,7 +16,7 @@ class MainDesktop extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20.0),
                 image: const DecorationImage(
-                    image: AssetImage("assets/image/home.jpeg"),
+                    image: AssetImage("assets/image/emreKaya.jpg"),
                     fit: BoxFit.cover
                 ),
               ),
@@ -25,7 +25,7 @@ class MainDesktop extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20.0),
                 image: const DecorationImage(
-                    image: AssetImage("assets/image/home.jpeg"),
+                    image: AssetImage("assets/image/ayo.jpg"),
                     fit: BoxFit.cover
                 ),
               ),
@@ -34,7 +34,7 @@ class MainDesktop extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20.0),
                 image: const DecorationImage(
-                    image: AssetImage("assets/image/home.jpeg"),
+                    image: AssetImage("assets/image/ayo3.jpg"),
                     fit: BoxFit.cover
                 ),
               ),
@@ -43,7 +43,7 @@ class MainDesktop extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20.0),
                 image: const DecorationImage(
-                    image: AssetImage("assets/image/home.jpeg"),
+                    image: AssetImage("assets/image/mutfak.jpg"),
                     fit: BoxFit.cover
                 ),
               ),
@@ -55,10 +55,10 @@ class MainDesktop extends StatelessWidget {
             enlargeCenterPage: true,
           ),
         ),
-        const SizedBox(height: 30),
+        const SizedBox(height: 20),
         const Text("İç Mekanları Sonsuzlaştırın,", style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700, color: CustomColor.appBarBg),),
         const Text("Infinito ile Yaratıcı Dokunuşlar!", style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700, color: CustomColor.appBarBg),),
-        const SizedBox(height: 20),
+        const SizedBox(height: 10),
         GestureDetector(
           onTap: (){},
           child: Container(

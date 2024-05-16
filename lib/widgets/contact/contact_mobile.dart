@@ -1,14 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../constant/colors.dart';
+import '../../controller/homeController/contactControllerHome.dart';
 
-class ContactMobile extends StatelessWidget {
-  final nameController = TextEditingController();
-  final emailController = TextEditingController();
-  final noteController = TextEditingController();
+class ContactMobile extends StatefulWidget {
+
   ContactMobile({Key? key}) : super(key: key);
+
+  @override
+  State<ContactMobile> createState() => _ContactMobileState();
+}
+
+class _ContactMobileState extends State<ContactMobile> {
+  final ContactControllerHome contactControllerHome = Get.put(ContactControllerHome());
+  final nameController = TextEditingController();
+
+  final emailController = TextEditingController();
+
+  final messageController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +64,9 @@ class ContactMobile extends StatelessWidget {
                       height: 40,
                       width: 250,
                       child: TextFormField(
+                        onChanged: (String value){
+                          contactControllerHome.contactName.value = nameController.text;
+                        },
                         controller: nameController,
                         decoration: InputDecoration(
                           focusedBorder: OutlineInputBorder(
@@ -80,6 +95,9 @@ class ContactMobile extends StatelessWidget {
                       height: 40,
                       width: 250,
                       child: TextFormField(
+                        onChanged: (String value){
+                          contactControllerHome.contactEmail.value = emailController.text;
+                        },
                         controller: emailController,
                         decoration: InputDecoration(
                           focusedBorder: OutlineInputBorder(
@@ -111,7 +129,10 @@ class ContactMobile extends StatelessWidget {
                         color:Color(0xff7AA2E3).withOpacity(0.2),
                       ),
                       child: TextField(
-                        controller: noteController,
+                        onChanged: (String value){
+                          contactControllerHome.contactMessage.value = messageController.text;
+                        },
+                        controller: messageController,
                         style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 16,  color: CustomColor.appBarBg),
                         maxLines: 8,
                         decoration: const InputDecoration(
@@ -130,7 +151,10 @@ class ContactMobile extends StatelessWidget {
                     ),
                     const SizedBox(height: 20,),
                     GestureDetector(
-                      onTap: (){},
+                      onTap: contactControllerHome.isContactLoading
+                          .value ? null : () async {
+                        await contactControllerHome.sendContact();
+                      },
                       child: Container(
                         decoration: BoxDecoration(color: CustomColor.appBarBg, borderRadius: BorderRadius.circular(15),
                         ),

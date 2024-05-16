@@ -3,15 +3,27 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
+import 'package:infinito_project_web/controller/homeController/contactControllerHome.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../constant/colors.dart';
 
-class ContactDesktop extends StatelessWidget {
-  final nameController = TextEditingController();
-  final emailController = TextEditingController();
-  final noteController = TextEditingController();
+class ContactDesktop extends StatefulWidget {
+
   ContactDesktop({Key? key}) : super(key: key);
+
+  @override
+  State<ContactDesktop> createState() => _ContactDesktopState();
+}
+
+class _ContactDesktopState extends State<ContactDesktop> {
+  final ContactControllerHome contactControllerHome = Get.put(ContactControllerHome());
+  final nameController = TextEditingController();
+
+  final emailController = TextEditingController();
+
+  final messageController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +62,9 @@ class ContactDesktop extends StatelessWidget {
                       height: 50,
                       width: 300,
                       child: TextFormField(
+                        onChanged: (String value){
+                          contactControllerHome.contactName.value = nameController.text;
+                        },
                         controller: nameController,
                         decoration: InputDecoration(
                           focusedBorder: OutlineInputBorder(
@@ -78,6 +93,9 @@ class ContactDesktop extends StatelessWidget {
                       height: 50,
                       width: 300,
                       child: TextFormField(
+                        onChanged: (String value){
+                          contactControllerHome.contactEmail.value = emailController.text;
+                        },
                         controller: emailController,
                         decoration: InputDecoration(
                           focusedBorder: OutlineInputBorder(
@@ -109,7 +127,10 @@ class ContactDesktop extends StatelessWidget {
                         color:Color(0xff7AA2E3).withOpacity(0.2),
                       ),
                       child: TextField(
-                        controller: noteController,
+                        onChanged: (String value){
+                          contactControllerHome.contactMessage.value = messageController.text;
+                        },
+                        controller: messageController,
                         style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 16,  color: CustomColor.appBarBg),
                         maxLines: 8,
                         decoration: const InputDecoration(
@@ -128,7 +149,10 @@ class ContactDesktop extends StatelessWidget {
                     ),
                     const SizedBox(height: 20,),
                     GestureDetector(
-                      onTap: (){},
+                      onTap: contactControllerHome.isContactLoading
+                        .value ? null : () async {
+                          await contactControllerHome.sendContact();
+                          },
                       child: Container(
                         decoration: BoxDecoration(color: CustomColor.appBarBg, borderRadius: BorderRadius.circular(15),
                         ),

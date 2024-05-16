@@ -91,19 +91,19 @@ class WhoWeAreDesktop extends StatelessWidget {
           const SizedBox(height: 25,),
           Row(children: [
             Expanded(child: CachedNetworkImage(
-              imageUrl: "assets/image/home.jpeg",
+              imageUrl: "assets/image/oda_View06.jpg",
               placeholder: (context, url) => CircularProgressIndicator(),
               errorWidget: (context, url, error) => Icon(Icons.error),
             )),
             const SizedBox(width: 10,),
             Expanded(child: CachedNetworkImage(
-              imageUrl: "assets/image/home.jpeg",
+              imageUrl: "assets/image/oda_View08.jpg",
               placeholder: (context, url) => CircularProgressIndicator(),
               errorWidget: (context, url, error) => Icon(Icons.error),
             )),
             const SizedBox(width: 10,),
             Expanded(child: CachedNetworkImage(
-              imageUrl: "assets/image/home.jpeg",
+              imageUrl: "assets/image/oda_View09.jpg",
               placeholder: (context, url) => CircularProgressIndicator(),
               errorWidget: (context, url, error) => Icon(Icons.error),
             )),

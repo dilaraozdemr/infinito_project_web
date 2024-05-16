@@ -38,10 +38,17 @@ class ProjectControllerHome extends GetxController{
   }
 
   getProjectsItemCountHome(){
-    if(projectsResponseModel.value.projects!.length <= 8){
+    if(projectsResponseModel.value.projects!.length <= 12){
       return projectsResponseModel.value.projects!.length;
     }else{
-      return 8;
+      return 12;
+    }
+  }
+  getProjectsItemCountHomeMobile(){
+    if(projectsResponseModel.value.projects!.length <= 6){
+      return projectsResponseModel.value.projects!.length;
+    }else{
+      return 6;
     }
   }
 

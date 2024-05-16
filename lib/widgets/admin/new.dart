@@ -72,12 +72,6 @@ class _NewsAdminPageState extends State<NewsAdminPage> {
                                       fontSize: 24,
                                       color: CustomColor.appBarBg)),
                               onTap: () {},
-                              subtitle: const Text(
-                                  "27.03.3003", style: TextStyle(
-                                  overflow: TextOverflow.ellipsis,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 12,
-                                  color: CustomColor.appBarBg)),
                               leading: Text("${index + 1}",
                                   style: const TextStyle(
                                       fontWeight: FontWeight.w600,
