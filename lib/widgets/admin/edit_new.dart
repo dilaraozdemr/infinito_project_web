@@ -432,6 +432,8 @@ class _EditNewPageState extends State<EditNewPage> {
                                     child: Stack(
                                       children: [
                                         Container(
+                                          width: 400,
+                                          height: 400,
                                             color: Colors.transparent,
                                             child:CachedNetworkImage(
                                               imageUrl: newController.selectedNew.value.image ?? "",
@@ -471,6 +473,8 @@ class _EditNewPageState extends State<EditNewPage> {
                                   const SizedBox(width: 10),
                                   newController.imageFilesEditNew.value.isNotEmpty ?
                                   Container(
+                                    width: 400,
+                                    height: 400,
                                     decoration: const BoxDecoration(
                                       color: Colors.transparent,
                                     ),

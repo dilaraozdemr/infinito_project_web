@@ -396,6 +396,8 @@ class _AddProjectPageState extends State<AddNewPage> {
                             ],
                           ),
                           Container(
+                            width: 400,
+                            height: 400,
                             decoration: const BoxDecoration(
                               color: Colors.transparent,
                             ),
