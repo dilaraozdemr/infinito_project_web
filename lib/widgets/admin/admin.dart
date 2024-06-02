@@ -78,7 +78,7 @@ class _AdminState extends State<Admin> {
                         child:  Row(
                           children: [
                             SiteDarkLogo(),
-                            Expanded(
+                            const Expanded(
                               child: Center(
                                 child: Text(
                                   "Admin Paneli",
@@ -99,6 +99,53 @@ class _AdminState extends State<Admin> {
                         ),
                       ),
                     ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            color: CustomColor.appBarBg,
+                            borderRadius:
+                            BorderRadius.circular(15),
+                          ),
+                          child:  Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 20.0, vertical: 12),
+                            child: Text(
+                              "Visitor Count ${authController.visitorsCount.value.toString()}",
+                              style: TextStyle(
+                                  overflow:
+                                  TextOverflow.ellipsis,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 20,
+                                  color: CustomColor.bgColor),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 30,),
+                        Container(
+                          decoration: BoxDecoration(
+                            color: CustomColor.appBarBg,
+                            borderRadius:
+                            BorderRadius.circular(15),
+                          ),
+                          child:  Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 20.0, vertical: 12),
+                            child: Text(
+                              "Active Admin Count ${authController.activeUsersCount.value.toString()}",
+                              style: TextStyle(
+                                  overflow:
+                                  TextOverflow.ellipsis,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 20,
+                                  color: CustomColor.bgColor),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+
                     const SizedBox(height: 30),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),

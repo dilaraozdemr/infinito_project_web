@@ -48,7 +48,7 @@ class _ProjectsDesktopState extends State<ProjectsDesktop> {
                       mainAxisSpacing: 20,
                       padding: const EdgeInsets.all(10),
                       children:
-                      List.generate(projectControllerHome.getProjectsItemCountHome(), (index) {
+                      List.generate(projectControllerHome.getProjectsCount.value, (index) {
                         return HoverContainer(
                           onHover: (isHovering) {
                             setState(() {

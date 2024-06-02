@@ -74,7 +74,7 @@ class _AddProjectPageState extends State<AddNewPage> {
                                           .start,
                                       children: [
                                         Text(
-                                          "Proje Başlığı:",
+                                          "Duyuru Başlığı:",
                                           style: TextStyle(
                                               overflow: TextOverflow.ellipsis,
                                               fontWeight: FontWeight.w500,
@@ -83,7 +83,7 @@ class _AddProjectPageState extends State<AddNewPage> {
                                         ),
                                         SizedBox(height: 30),
                                         Text(
-                                          "Projenin Açıklaması:",
+                                          "Duyuru Açıklaması:",
                                           style: TextStyle(
                                               overflow: TextOverflow.ellipsis,
                                               fontWeight: FontWeight.w500,
@@ -410,7 +410,8 @@ class _AddProjectPageState extends State<AddNewPage> {
                                       newController.newImage.value): const SizedBox()
                                       : const SizedBox(),
                                 ),
-                                Positioned(
+                                imageAvailable
+                                    ? Positioned(
                                   top: 0,
                                   right: 0,
                                   child: GestureDetector(
@@ -434,7 +435,7 @@ class _AddProjectPageState extends State<AddNewPage> {
                                       ),
                                     ),
                                   ),
-                                ),
+                                ): const SizedBox(),
                               ],
                             ),
                           )

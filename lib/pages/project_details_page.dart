@@ -26,8 +26,8 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    var data = Get.parameters;
-    String id = data['id'] ?? "";
+    var data = Get.rootDelegate.arguments();
+    String id = data;
     idFromRoot = id;
   }
   @override

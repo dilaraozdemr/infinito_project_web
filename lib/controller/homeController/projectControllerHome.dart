@@ -12,6 +12,8 @@ class ProjectControllerHome extends GetxController{
   var isLoadingHomeProjectDetail = false.obs;
   var projectsResponseModel = ProjectResponseModel().obs;
   var selectedProject = Project().obs;
+  var getProjectsCount = 0.obs;
+  var getProjectsHomeCount = 0.obs;
 
   getProjectsHome() async{
     isLoadingHomeProjects.value = true;
@@ -29,6 +31,8 @@ class ProjectControllerHome extends GetxController{
       var model = ProjectResponseModel.fromJson(json.decode(response.body));
       projectsResponseModel.value = model;
       isLoadingHomeProjects.value = false;
+      getProjectsItemCountHome();
+      getProjectsItemCountHomeMobile();
       return response.body;
     } else {
       print('Failed to get project: ${response.reasonPhrase}');
@@ -39,16 +43,16 @@ class ProjectControllerHome extends GetxController{
 
   getProjectsItemCountHome(){
     if(projectsResponseModel.value.projects!.length <= 12){
-      return projectsResponseModel.value.projects!.length;
+      getProjectsCount.value = projectsResponseModel.value.projects?.length ?? 0;
     }else{
-      return 12;
+      getProjectsCount.value = 12;
     }
   }
   getProjectsItemCountHomeMobile(){
     if(projectsResponseModel.value.projects!.length <= 6){
-      return projectsResponseModel.value.projects!.length;
+      getProjectsHomeCount.value = projectsResponseModel.value.projects?.length ?? 0;
     }else{
-      return 6;
+      getProjectsHomeCount.value = 6;
     }
   }
 
@@ -73,6 +77,21 @@ class ProjectControllerHome extends GetxController{
       print('Failed to get project: ${response.reasonPhrase}');
       isLoadingHomeProjectDetail.value = false;
       return "";
+    }
+  }
+
+  Future<void> saveVisitor() async {
+    var url = "http://localhost:4000/api/saveVisitor";
+    var response = await http.get(
+      Uri.parse(url),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+    if (response.statusCode == 200) {
+
+    } else {
+      print('Failed to send question: ${response.reasonPhrase}');
     }
   }
 

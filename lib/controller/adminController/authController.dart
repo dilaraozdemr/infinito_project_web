@@ -60,37 +60,52 @@ class AuthController extends GetxController {
 
   Future<bool> login() async {
     isLoading.value = true;
+
+    await Future.delayed(Duration(seconds: 2));
+    //await getCsrfToken();
+
     final Map<String, String> credentials = {
       'userName': userName.value,
       'password': password.value,
     };
+
     var url = "http://localhost:4000/api/adminLogin";
+
     var response = await http.post(
       Uri.parse(url),
       headers: <String, String>{
-        'Accept': '*/*',
+        'Accept': '/',
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(credentials),
     );
-    print(response.body);
+
     if (response.statusCode == 200) {
       showSnackBar(response);
+      print('Login Success');
       isLoading.value = false;
+
+      var json2 = json.decode(response.body);
+      print("***");
+      print(json2);
 
       var model = AuthResponseModel.fromJson(json.decode(response.body));
       authResponseModel.value = model;
+
       if (rememberMe.value) {
-        box.write("userName", authResponseModel.value.admin?.userName ?? "");
-        box.write("id", authResponseModel.value.admin?.id ?? "");
-        box.write("token", authResponseModel.value.token ?? "");
+        box.write("isRemember", true);
+      }else{
+        box.write("isRemember", false);
       }
+      box.write("userName", authResponseModel.value.admin?.userName ?? "");
+      box.write("id", authResponseModel.value.admin?.id ?? "");
+      box.write("token", authResponseModel.value.token ?? "");
       isLogined.value = true;
-      //await  getActiveUsers();
+       await getVisitors();
+       await getActiveUsers();
       return true;
     } else {
       showSnackBar(response);
-
       isLoading.value = false;
       isLogined.value = false;
       box.write("isLogined", false);
@@ -103,17 +118,20 @@ class AuthController extends GetxController {
   }
 
   checkLogin() async {
-    if (box.read("userName") != null) {
-      if (box.read("userName") != "") {
-        isLogined.value = true;
-        authResponseModel.value = AuthResponseModel(
-            token: box.read("token"),
-            admin: Admin(userName: box.read("userName"), id: box.read("id")));
-        //await getActiveUsers();
+    if(box.read("isRemember") == true){
+      if (box.read("userName") != null) {
+        if (box.read("userName") !="") {
+          isLogined.value = true;
+          authResponseModel.value = AuthResponseModel(token:box.read("token") ,admin: Admin(userName: box.read("userName"),id: box.read("id")));
+          await getActiveUsers();
+          await getVisitors();
+        } else {
+          isLogined.value = false;
+        }
       } else {
         isLogined.value = false;
       }
-    } else {
+    }else{
       isLogined.value = false;
     }
   }
@@ -123,6 +141,7 @@ class AuthController extends GetxController {
     box.write("isLogined", false);
     box.write("userName", "");
     box.write("id", "");
+    box.write("isRemember", false);
     rememberMe.value = false;
     authResponseModel.value = AuthResponseModel();
   }
@@ -149,7 +168,6 @@ class AuthController extends GetxController {
       showSnackBar(response);
       print('register Success');
       isLoading.value = false;
-
       var json2 = json.decode(response.body);
       print(json2);
       isWantRegister.value = false;
@@ -189,6 +207,61 @@ class AuthController extends GetxController {
       isLoading.value = false;
       showSnackBar(response);
       return false;
+    }
+  }
+
+  Future<void> getVisitors() async {
+      await removeVisitor();
+    var token = authResponseModel.value.token;
+    var url = "http://localhost:4000/api/getVisitor";
+    var response = await http.get(
+      Uri.parse(url),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': token.toString(),
+      },
+    );
+    if (response.statusCode == 200) {
+      var jsonModel = json.decode(response.body);
+      visitorsCount.value = jsonModel["count"].toDouble() ?? 0.0;
+    } else {
+      print('Failed to send question: ${response.reasonPhrase}');
+    }
+  }
+  Future<void> removeVisitor() async {
+    var token = authResponseModel.value.token;
+    var url = "http://localhost:4000/api/removeVisitor";
+    var response = await http.get(
+      Uri.parse(url),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': token.toString(),
+      },
+    );
+    if (response.statusCode == 200) {
+      var jsonModel = json.decode(response.body);
+      visitorsCount.value = jsonModel["count"].toDouble() ?? 0.0;
+    } else {
+      print('Failed to send question: ${response.reasonPhrase}');
+    }
+  }
+  Future<void> getActiveUsers() async {
+    var token = authResponseModel.value.token;
+    var url = "http://localhost:4000/api/activeAdminCount";
+    var response = await http.get(
+      Uri.parse(url),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': token.toString(),
+      },
+    );
+    if (response.statusCode == 200) {
+      var jsonModel = json.decode(response.body);
+      activeUsersCount.value = jsonModel["activeAdminCount"].toDouble() ?? 0.0;
+      print(jsonModel["count"]);
+      print(response.body.toString());
+    } else {
+      print('Failed to send question: ${response.reasonPhrase}');
     }
   }
 

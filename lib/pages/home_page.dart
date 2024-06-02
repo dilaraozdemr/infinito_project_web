@@ -30,6 +30,8 @@ class _HomePageState extends State<HomePage> {
     // TODO: implement initState
     super.initState();
     projectControllerHome.getProjectsHome();
+    projectControllerHome.saveVisitor();
+
   }
   int hoverIndex = -1;
   final scaffoldKey = GlobalKey<ScaffoldState>();

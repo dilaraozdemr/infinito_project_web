@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:infinito_project_web/constant/utils.dart';
 import 'package:infinito_project_web/controller/homeController/projectControllerHome.dart';
 
 import '../../constant/animated_image.dart';
@@ -60,12 +61,16 @@ class _ProjectsHomeDesktopState extends State<ProjectsHomeDesktop> {
                           .value.projects?.length ?? 0, (index) {
                         return GestureDetector(
                           onTap: (){
-                            var modified = projectControllerHome.projectsResponseModel
+                            var id = projectControllerHome.projectsResponseModel
                                 .value.projects?[index]
                                 .sId?.replaceAll(
                                 '"', '');
-                            String url = "/home/project/$modified";
-                            Get.rootDelegate.toNamed(url);
+                            var name = slugify(projectControllerHome.projectsResponseModel
+                                .value.projects?[index].name ?? "");
+
+                              var url = "/home/project/${name}";
+
+                            Get.rootDelegate.toNamed(url,arguments: id);
                           },
                           child: HoverContainer(
                             onHover: (isHovering) {

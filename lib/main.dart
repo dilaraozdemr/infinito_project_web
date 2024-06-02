@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         fontFamily: "Playfair",
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-
+      debugShowCheckedModeBanner: false,
       getPages: appRoutes(),
       routerDelegate: AppRouterDelegate(),
     );

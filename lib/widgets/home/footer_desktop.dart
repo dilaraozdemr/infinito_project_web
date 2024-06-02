@@ -1,4 +1,8 @@
+import 'dart:html';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:infinito_project_web/widgets/site_light_logo.dart';
 
 import '../../constant/colors.dart';
@@ -48,6 +52,12 @@ class FooterDesktop extends StatelessWidget {
                       const Text("Yeşil Mahalle Avukat Osman \nSokak No:45 Kat7 Merkez/Zonguldak", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400, color: CustomColor.bgColor),),
                       const SizedBox(height: 10),
                       const Text("Telefon : +90 123 123 1234", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400, color: CustomColor.bgColor),),
+                      const SizedBox(height: 10),
+                      GestureDetector(
+                        onTap: (){
+                          Get.defaultDialog(content: Image.asset("assets/image/sitemap.jpeg",width: 800, height: 750,),title: "");
+                        },
+                          child: const Text("Site Map", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400, color: CustomColor.bgColor),))
                     ],
                   ),
                 ),

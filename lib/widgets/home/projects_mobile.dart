@@ -48,7 +48,7 @@ class _ProjectsMobileState extends State<ProjectsMobile> {
                       mainAxisSpacing: 15,
                       padding: const EdgeInsets.all(10),
                       children:
-                      List.generate(projectControllerHome.getProjectsItemCountHomeMobile(), (index) {
+                      List.generate(projectControllerHome.getProjectsHomeCount.value, (index) {
                         return HoverContainer(
                           onHover: (isHovering) {
                             setState(() {
