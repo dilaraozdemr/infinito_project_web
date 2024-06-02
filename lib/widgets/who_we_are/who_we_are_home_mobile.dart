@@ -26,14 +26,15 @@ class WhoWeAreHomeMobile extends StatelessWidget {
                   Flexible(
                     child: Column(children: [
                       Text(
-                        "This text is so long and long and long adslfhjsdkfhjksdhfjkdshfjkhsjkfhsdkn şldfjglsdkf şlzdfsglsdkfglksdflş klfsjgklsfdjgkldf kljfdgkljsdfklgjsdflk lkdfjgklsdfjglkd lskdfjgklsdfbd long and long and that's why it is not wrapping to next line.", style: TextStyle(
-                          fontWeight: FontWeight.w500, fontSize: 14, color: Colors.black
+                        "Infinito Design, estetik ve işlevselliği bir araya getiren yaratıcı iç mekan çözümleri sunan bir iç mimarlık firmasıdır. Deneyimli ve tutkulu ekibimiz, her projede mükemmelliği hedefleyerek, yaşam alanlarını ve ticari mekanları daha konforlu, şık ve kullanışlı hale getirmek için çalışmaktadır. Modern tasarım anlayışımızı, müşterilerimizin bireysel ihtiyaçları ve zevkleri ile harmanlayarak özgün ve yenilikçi projelere imza atıyoruz.\nİç mimarımız Hakan Bey daha önce çalıştığı firmalarda da birçok projeye imza atarak başarısına başarı katmıştır. Yoluna kendi devam etmeye karar verdiği noktada Infinito Design 'ın ilk adımları atılmıştır.",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500, fontSize: 12, color: Colors.black
                       ),)
                     ]),
                   ),
                 ],
               ),
-              const SizedBox(height: 20,),
+              const SizedBox(height: 40,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

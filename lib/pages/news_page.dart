@@ -47,8 +47,8 @@ class _NewsPageState extends State<NewsPage> {
                     ? const NewsDesktop()
                     : const NewsMobile(),
                 constraints.maxWidth >= kMinDesktopWidth
-                    ? const FooterDesktop()
-                    : const FooterMobile(),
+                    ?  FooterDesktop()
+                    :  FooterMobile(),
               ],
             ));
       },

@@ -68,8 +68,8 @@ class _HomePageState extends State<HomePage> {
                     ? const ProjectsDesktop()
                     : const ProjectsMobile(),
                 constraints.maxWidth >= kMinDesktopWidth
-                    ? const FooterDesktop()
-                    : const FooterMobile(),
+                    ? FooterDesktop()
+                    : FooterMobile(),
               ],
             ));
       },

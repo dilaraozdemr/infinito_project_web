@@ -47,8 +47,8 @@ class _ContactPageState extends State<ContactPage> {
                     ? ContactDesktop()
                     : ContactMobile(),
                 constraints.maxWidth >= kMinDesktopWidth
-                    ? const FooterDesktop()
-                    : const FooterMobile(),
+                    ?  FooterDesktop()
+                    : FooterMobile(),
               ],
             ));
       },

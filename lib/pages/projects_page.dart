@@ -53,8 +53,8 @@ class _ProjectsPageState extends State<ProjectsPage> {
                     ? const ProjectsHomeDesktop()
                     : const ProjectsHomeMobile(),
                 constraints.maxWidth >= kMinDesktopWidth
-                    ? const FooterDesktop()
-                    : const FooterMobile(),
+                    ?  FooterDesktop()
+                    :  FooterMobile(),
               ],
             ));
       },

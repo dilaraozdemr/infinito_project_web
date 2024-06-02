@@ -27,7 +27,7 @@ class WhoWeAreMobile extends StatelessWidget {
                   Flexible(
                     child: Column(children: [
                       Text(
-                          "This text is so long and long and long adslfhjsdkfhjksdhfjkdshfjkhsjkfhsdkn şldfjglsdkf şlzdfsglsdkfglksdflş klfsjgklsfdjgkldf kljfdgkljsdfklgjsdflk lkdfjgklsdfjglkd lskdfjgklsdfbd long and long and that's why it is not wrapping to next line.", style: TextStyle(
+                          "Infinito Design, estetik ve işlevselliği bir araya getiren yaratıcı iç mekan çözümleri sunan bir iç mimarlık firmasıdır. Deneyimli ve tutkulu ekibimiz, her projede mükemmelliği hedefleyerek, yaşam alanlarını ve ticari mekanları daha konforlu, şık ve kullanışlı hale getirmek için çalışmaktadır. Modern tasarım anlayışımızı, müşterilerimizin bireysel ihtiyaçları ve zevkleri ile harmanlayarak özgün ve yenilikçi projelere imza atıyoruz.", style: TextStyle(
                           fontWeight: FontWeight.w500, fontSize: 14
                       ),)
                     ]),
@@ -53,7 +53,7 @@ class WhoWeAreMobile extends StatelessWidget {
                   Flexible(
                     child: Column(children: [
                       Text(
-                          "This text is ssdafsfasfdasfas lksdjflkasdjflk ljsdfkvlgjadfkgjdlk lksdjgklafdjgalkfd ldfkagjdaklfjglakdf lkdfjgkldafjgkldf adlkfgjkaldfgjldfasfsdfasfddsakfjaksdjfksdjfkldso long and long and long and long and long and that's why it is not wrapping to next line.", style: TextStyle(
+                          "Infinito Design olarak misyonumuz, müşterilerimize hayallerindeki yaşam ve çalışma alanlarını yaratmada yardımcı olmaktır. Estetik değerleri yüksek, işlevselliği ön planda tutan, sürdürülebilir ve yenilikçi tasarımlar sunarak, her projemizde müşteri memnuniyetini en üst düzeye çıkarmayı amaçlıyoruz. Kaliteli hizmet anlayışımızla, sektörde güvenilir ve öncü bir firma olmayı hedefliyoruz.", style: TextStyle(
                           fontWeight: FontWeight.w500, fontSize: 14
                       ),)
                     ]),
@@ -79,7 +79,7 @@ class WhoWeAreMobile extends StatelessWidget {
                   Flexible(
                     child: Column(children: [
                       Text(
-                          "This text is so long and long and long and long and long  dslfjklsdj klsdafkjklasdjkl jlkjadfklvjkl klah vdklj lıurekjfgh ıukgherqıughqerug chqerluıgqeluı equrgıqer gıequr gıque gkerhand that's why it is not wrapping to next line.", style: TextStyle(
+                          "Infinito Design olarak vizyonumuz, iç mimarlık alanında ulusal ve uluslararası düzeyde tanınan, yenilikçi ve öncü bir marka olmaktır. Tasarımda mükemmelliği ve sürdürülebilirliği esas alarak, her projede fark yaratan, trendleri belirleyen ve müşteri beklentilerini aşan çözümler sunmayı hedefliyoruz. Geleceğin yaşam alanlarını bugünden tasarlayarak, sektörde örnek alınan ve ilham veren bir iç mimarlık firması olmayı amaçlıyoruz.", style: TextStyle(
                           fontWeight: FontWeight.w500, fontSize: 14
                       ),)
                     ]),

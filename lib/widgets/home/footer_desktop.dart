@@ -2,13 +2,16 @@ import 'dart:html';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:infinito_project_web/widgets/site_light_logo.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../constant/colors.dart';
 
 class FooterDesktop extends StatelessWidget {
-  const FooterDesktop({Key? key}) : super(key: key);
+  final Uri _url = Uri.parse('https://www.instagram.com/infinitodesignproject?igsh=MXFqYnRoODM4MjV1Mg%3D%3D&utm_source=qr');
+  FooterDesktop({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +42,9 @@ class FooterDesktop extends StatelessWidget {
                           const SizedBox(width: 10,),
                           Image.asset("assets/image/gray_mail.png", width: 80),
                           const SizedBox(width: 10,),
-                          Image.asset("assets/image/gray_instagram.png", width: 50),
+                          GestureDetector(
+                            onTap: (){ _launchUrl();},
+                              child: Image.asset("assets/image/gray_instagram.png", width: 50)),
                           const SizedBox(width: 10,),
                           Image.asset("assets/image/whatsapp.png", width: 50),
                           const SizedBox(width: 10,),
@@ -71,5 +76,10 @@ class FooterDesktop extends StatelessWidget {
         ),
       ),
     );
+  }
+  Future<void> _launchUrl() async {
+    if (!await launchUrl(_url)) {
+      throw Exception('Could not launch $_url');
+    }
   }
 }

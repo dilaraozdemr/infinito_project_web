@@ -59,19 +59,6 @@ class MainDesktop extends StatelessWidget {
         const Text("İç Mekanları Sonsuzlaştırın,", style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700, color: CustomColor.appBarBg),),
         const Text("Infinito ile Yaratıcı Dokunuşlar!", style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700, color: CustomColor.appBarBg),),
         const SizedBox(height: 10),
-        GestureDetector(
-          onTap: (){},
-          child: Container(
-            decoration: BoxDecoration(
-              color: CustomColor.appBarBg,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: const Padding(
-              padding:  EdgeInsets.symmetric(vertical: 20.0, horizontal: 30),
-              child: Text("Başlamak İçin Dokun", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: CustomColor.bgColor),),
-            ),
-          ),
-        ),
         const SizedBox(height: 90),
       ],
     );

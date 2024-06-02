@@ -56,8 +56,8 @@ class _ProjectDetailPageState extends State<ProjectDetailPage> {
                     ? ProjectDetailHomeDesktop(id: idFromRoot,)
                     : ProjectDetailHomeMobile(id: idFromRoot),
                 constraints.maxWidth >= kMinDesktopWidth
-                    ? const FooterDesktop()
-                    : const FooterMobile(),
+                    ?  FooterDesktop()
+                    :  FooterMobile(),
               ],
             ));
       },

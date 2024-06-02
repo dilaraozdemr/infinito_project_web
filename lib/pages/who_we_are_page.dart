@@ -43,12 +43,12 @@ class _WhoWeArePagesState extends State<WhoWeArePages> {
                   },
                 ),
                 const SizedBox(height: 30,),
-                constraints.maxWidth >= kMinDesktopWidth
+                constraints.maxWidth >= 900
                     ? const WhoWeAreHomeDesktop()
                     : const WhoWeAreHomeMobile(),
                 constraints.maxWidth >= kMinDesktopWidth
-                    ? const FooterDesktop()
-                    : const FooterMobile(),
+                    ?  FooterDesktop()
+                    :  FooterMobile(),
               ],
             ));
       },
